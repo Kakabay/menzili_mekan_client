@@ -1,15 +1,6 @@
-import React from 'react';
 import Container from './Container';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-} from '@radix-ui/react-dropdown-menu';
 
 interface IProps {
   position: 'fixed' | 'normal';
@@ -33,38 +24,7 @@ const Header = ({ position }: IProps) => {
           <Link to={'/'}>contact</Link>
         </nav>
       </Container>
-      <div className="absolute right-[80px] top-[56px]">
-        {' '}
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <div className="flex justify-center items-center uppercase text-[14px] leading-[19.6px] tracking-[-3%] border border-white text-white px-[3px] py-[2px]">
-              en
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>
-              <div className="flex justify-center items-center uppercase text-[14px] leading-[19.6px] tracking-[-3%]  text-white px-[3px] py-[2px]">
-                tm
-              </div>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <div className="flex justify-center items-center uppercase text-[14px] leading-[19.6px] tracking-[-3%]  text-white px-[3px] py-[2px]">
-                ru
-              </div>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <div className="flex justify-center items-center uppercase text-[14px] leading-[19.6px] tracking-[-3%]  text-white px-[3px] py-[2px]">
-                tr
-              </div>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <div className="flex justify-center items-center uppercase text-[14px] leading-[19.6px] tracking-[-3%]  text-white px-[3px] py-[2px]">
-                ch
-              </div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      <div className="absolute right-[80px] top-[56px]"></div>
     </header>
   );
 };

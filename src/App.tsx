@@ -4,6 +4,8 @@ import FeaturesSection from './components/home/FeaturesSection';
 import Container from './components/Container';
 import GallerySection from './components/home/GallerySection';
 import { EmblaCarousel } from './components/home/EmblaCarousel';
+import { Link } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <FeaturesSection />
       <GallerySection />
       <EmblaCarousel />
+      <Footer />
     </>
   );
 }
