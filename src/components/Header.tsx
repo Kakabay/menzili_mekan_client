@@ -1,6 +1,7 @@
 import Container from './Container';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import LanguageDropdown from './ui/LanguageDropdown';
 
 interface IProps {
   position: 'fixed' | 'normal';
@@ -24,7 +25,9 @@ const Header = ({ position }: IProps) => {
           <Link to={'/'}>contact</Link>
         </nav>
       </Container>
-      <div className="absolute right-[80px] top-[56px]"></div>
+      <div className="absolute right-[80px] top-[56px] text-white">
+        <LanguageDropdown />
+      </div>
     </header>
   );
 };
