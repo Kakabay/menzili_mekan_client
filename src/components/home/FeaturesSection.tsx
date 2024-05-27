@@ -1,5 +1,6 @@
 import Container from '../Container';
 import FeaturesBlock from '../FeaturesBlock';
+import { v4 } from 'uuid';
 
 const featuresData = [
   {
@@ -22,7 +23,7 @@ const FeaturesSection = () => {
       <Container>
         <div className="flex gap-[32px]">
           {featuresData.map((block) => (
-            <FeaturesBlock text={block.text} title={block.title} />
+            <FeaturesBlock key={v4()} text={block.text} title={block.title} />
           ))}
         </div>
       </Container>
