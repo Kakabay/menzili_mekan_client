@@ -18,6 +18,7 @@ const LanguageDropdown = () => {
       scaleY: 0,
     },
   };
+
   const langVarsContainer = {
     initial: {
       transition: {
