@@ -71,19 +71,35 @@ const LanguageDropdown = () => {
       <AnimatePresence>
         {open && (
           <motion.div
-            variants={langVars}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="flex flex-col gap-[4px] items-center origin-top">
+            initial={{
+              height: '0%',
+            }}
+            animate={{
+              height: '100%',
+            }}
+            exit={{
+              height: '0%',
+            }}
+            className="flex flex-col gap-[4px] items-center origin-top overflow-hidden">
             {languages
               .filter((language) => language !== activeLanguage)
-              .map((item) => (
+              .map((item, index) => (
                 <motion.div
-                  variants={linkVars}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
+                  initial={{
+                    y: '-100%',
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: '0%',
+                    opacity: 1,
+                  }}
+                  exit={{
+                    y: '-100%',
+                    opacity: 0,
+                  }}
+                  transition={{
+                    delay: index * 0.1 + 0.1,
+                  }}
                   key={v4()}
                   className="flex items-center justify-center py-[2px] px-[3px] cursor-pointer origin-top"
                   onClick={() => handleLanguageClick(item)}>
