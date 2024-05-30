@@ -1,57 +1,11 @@
 import { useState } from 'react';
 import { v4 } from 'uuid';
-import { AnimatePresence, motion, stagger } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const languages = ['en', 'tm', 'ru', 'tr', 'ch'];
 const LanguageDropdown = () => {
   const [open, setOpen] = useState(false);
   const [activeLanguage, setActiveLanguage] = useState<string>(languages[0]);
-
-  const langVars = {
-    initial: {
-      scaleY: 0,
-    },
-    animate: {
-      scaleY: 1,
-    },
-    exit: {
-      scaleY: 0,
-    },
-  };
-
-  const langVarsContainer = {
-    initial: {
-      transition: {
-        staggerChildren: 0.09,
-      },
-    },
-    animate: {
-      transition: {
-        staggerChildren: 0.09,
-      },
-    },
-  };
-
-  const linkVars = {
-    initial: {
-      y: '100%',
-      transition: {
-        duration: 0.5,
-      },
-    },
-    animate: {
-      y: 0,
-      transition: {
-        duration: 0.7,
-      },
-    },
-    // exit: {
-    //   y: '100%',
-    //   transition: {
-    //     duration: 0.5,
-    //   },
-    // },
-  };
 
   const handleLanguageClick = (language: string) => {
     setActiveLanguage(language);
