@@ -1,18 +1,16 @@
-import Header from "./components/Header";
-import HeroSection from "./components/home/HeroSection";
-import FeaturesSection from "./components/home/FeaturesSection";
-import GallerySection from "./components/home/GallerySection";
-import { EmblaCarousel } from "./components/home/EmblaCarousel";
-import Footer from "./components/Footer";
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import FeaturesSection from './components/home/FeaturesSection';
+import GallerySection from './components/home/GallerySection';
+import { EmblaCarousel } from './components/PartnersSlider';
+import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <>
       <Header position="fixed" />
-      <HeroSection />
-      <FeaturesSection />
-      <GallerySection />
-      <EmblaCarousel />
+      <Outlet />
       <Footer />
     </>
   );
