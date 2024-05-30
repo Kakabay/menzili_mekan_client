@@ -16,7 +16,7 @@ const Header = ({ position }: IProps) => {
       <Container>
         <nav className="flex text-white items-center justify-center gap-[56px] uppercase py-[48px] text-base font-[500] leading-[24px] tracking-[3%]">
           <Link to={'/'}>home</Link>
-          <Link to={'/'}>cartoons</Link>
+          <Link to={'/works'}>cartoons</Link>
           <Link to={'/'}>
             {' '}
             <img src="/logo-text.svg" alt="logo" />
