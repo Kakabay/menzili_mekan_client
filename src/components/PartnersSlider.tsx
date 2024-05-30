@@ -1,6 +1,7 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Container from './Container';
+import SectionTitle from './ui/SectionTitle';
 
 export function PartnersSlider() {
   const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start', containScroll: false }, [
@@ -12,7 +13,7 @@ export function PartnersSlider() {
     <section className="py-[140px]">
       <Container>
         <div className="flex flex-col items-center gap-[40px]">
-          <h2 className="text-[32px] leading-[40px] tracking-[3%] uppercase">our partners</h2>
+          <SectionTitle type="small" text="our partners" />
           <div className="embla" ref={emblaRef}>
             <div className="embla__container">
               <div className="embla__slide">

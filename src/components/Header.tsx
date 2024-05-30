@@ -21,7 +21,7 @@ const Header = ({ position }: IProps) => {
             {' '}
             <img src="/logo-text.svg" alt="logo" />
           </Link>
-          <Link to={'/'}>services</Link>
+          <Link to={'/services'}>services</Link>
           <Link to={'/'}>contact</Link>
         </nav>
       </Container>

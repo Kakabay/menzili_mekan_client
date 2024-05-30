@@ -2,6 +2,7 @@ import { useZusHome } from '@/zustand/useZusHome';
 import Button from './ui/Button';
 import YoutubeWindow from './home/YoutubeWindow';
 import clsx from 'clsx';
+import Container from './Container';
 
 type IProps = {
   size: 'small' | 'big';
@@ -50,46 +51,47 @@ const HeroSection = (props: IProps) => {
             },
             { 'bg-opacity-20': props.size === 'big' && props.type === 'cartoon' },
           )}>
-          {props.size === 'big' ? (
-            <div className="flex flex-col gap-[40px] items-center">
-              {props.type === 'home' ? (
-                <>
-                  <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
-                    <h1 className=" text-[64px] leading-[80px] tracking-[3%]">{props.title}</h1>
-                    <h2 className="text-[32px] leading-[40px] tracking-[3%]">{props.subtitle}</h2>
+          <Container>
+            {props.size === 'big' ? (
+              <div className="flex flex-col gap-[40px] items-center">
+                {props.type === 'home' ? (
+                  <>
+                    <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
+                      <h1 className=" text-[64px] leading-[80px] tracking-[3%]">{props.title}</h1>
+                      <h2 className="text-[32px] leading-[40px] tracking-[3%]">{props.subtitle}</h2>
+                    </div>
+                    <div onClick={() => setActiveVideo(true)}>
+                      <Button text={props.buttonText} type="primary" />
+                    </div>
+                  </>
+                ) : props.type === 'cartoon' ? (
+                  <>
+                    <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
+                      <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
+                      <h2 className="text-[32px] leading-[40px] tracking-[3%]">
+                        turkmen animation studio
+                      </h2>
+                    </div>
+                    <div onClick={() => setActiveVideo(true)}>
+                      <Button text="Watch trailer" type="secondary" />
+                    </div>
+                  </>
+                ) : props.type === 'services' ? (
+                  <div className="flex w-full justify-end">
+                    <div className="flex flex-col gap-[16px] max-w-[596px] text-white">
+                      <h1 className=" text-[32px] leading-[40px] tracking-[3%]">{props.title}</h1>
+                      <div className="h-[1.5px] w-[80px] bg-white"></div>
+                      <p className="text-[16px] leading-[24px]">{props.subtitle}</p>
+                    </div>
                   </div>
-                  <div onClick={() => setActiveVideo(true)}>
-                    <Button text={props.buttonText} type="primary" />
-                  </div>
-                </>
-              ) : props.type === 'cartoon' ? (
-                <>
-                  <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
-                    <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
-                    <h2 className="text-[32px] leading-[40px] tracking-[3%]">
-                      turkmen animation studio
-                    </h2>
-                  </div>
-                  <div onClick={() => setActiveVideo(true)}>
-                    <Button text="Watch trailer" type="secondary" />
-                  </div>
-                </>
-              ) : props.type === 'services' ? (
-                <>
-                  <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
-                    <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
-                    <h2 className="text-[32px] leading-[40px] tracking-[3%]">
-                      turkmen animation studio
-                    </h2>
-                  </div>
-                </>
-              ) : null}
-            </div>
-          ) : props.size === 'small' ? (
-            <div className="flex flex-col gap-[40px] items-center justify-center">
-              <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
-            </div>
-          ) : null}
+                ) : null}
+              </div>
+            ) : props.size === 'small' ? (
+              <div className="flex flex-col gap-[40px] items-center justify-center">
+                <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
+              </div>
+            ) : null}
+          </Container>
         </div>
       </section>
     </>

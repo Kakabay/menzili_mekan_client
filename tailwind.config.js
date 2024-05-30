@@ -22,6 +22,7 @@ module.exports = {
         blue: '#008FCD',
         gray: '#808080',
         eerieBlack: '#1A1A1A',
+        bauhaus: '#4D4D4D',
 
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
