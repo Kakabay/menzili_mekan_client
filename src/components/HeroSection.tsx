@@ -9,18 +9,18 @@ type IProps = {
 } & (HomeHeroProps | SmallProps | CartoonHeroProps | ServicesHeroProps);
 
 type HomeHeroProps = {
-  type: 'home';
+  page: 'home';
   title: string;
   subtitle: string;
   buttonText: string;
 };
 type CartoonHeroProps = {
-  type: 'cartoon';
+  page: 'cartoon';
   buttonText: string;
   logo: string;
 };
 type ServicesHeroProps = {
-  type: 'services';
+  page: 'services';
   title: string;
   subtitle: string;
 };
@@ -45,16 +45,16 @@ const HeroSection = (props: IProps) => {
             'overlay z-10 absolute top-0 left-0 w-full h-full bg-black  flex justify-center items-center text-white',
             {
               'bg-opacity-50':
-                (props.size === 'big' && props.type === 'home') ||
-                (props.size === 'big' && props.type === 'services') ||
+                (props.size === 'big' && props.page === 'home') ||
+                (props.size === 'big' && props.page === 'services') ||
                 props.size === 'small',
             },
-            { 'bg-opacity-20': props.size === 'big' && props.type === 'cartoon' },
+            { 'bg-opacity-20': props.size === 'big' && props.page === 'cartoon' },
           )}>
           <Container>
             {props.size === 'big' ? (
               <div className="flex flex-col gap-[40px] items-center">
-                {props.type === 'home' ? (
+                {props.page === 'home' ? (
                   <>
                     <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
                       <h1 className=" text-[64px] leading-[80px] tracking-[3%]">{props.title}</h1>
@@ -64,7 +64,7 @@ const HeroSection = (props: IProps) => {
                       <Button text={props.buttonText} type="primary" />
                     </div>
                   </>
-                ) : props.type === 'cartoon' ? (
+                ) : props.page === 'cartoon' ? (
                   <>
                     <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
                       <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
@@ -76,7 +76,7 @@ const HeroSection = (props: IProps) => {
                       <Button text="Watch trailer" type="secondary" />
                     </div>
                   </>
-                ) : props.type === 'services' ? (
+                ) : props.page === 'services' ? (
                   <div className="flex w-full justify-end">
                     <div className="flex flex-col gap-[16px] max-w-[596px] text-white">
                       <h1 className=" text-[32px] leading-[40px] tracking-[3%]">{props.title}</h1>

@@ -23,6 +23,9 @@ module.exports = {
         gray: '#808080',
         eerieBlack: '#1A1A1A',
         bauhaus: '#4D4D4D',
+        orochimaru: '#D9D9D9',
+        uniformGrey: '#A8A8A8',
+        lust: '#E41A1A',
 
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

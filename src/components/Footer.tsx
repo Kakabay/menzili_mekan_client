@@ -4,7 +4,7 @@ import Container from './Container';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue pt-[56px] pb-[40px] text-white">
+    <footer className="bg-blue pt-[56px] pb-[40px] mt-[140px] text-white">
       <Container>
         <div className="flex w-full">
           <div className="flex flex-col gap-[16px] w-full">

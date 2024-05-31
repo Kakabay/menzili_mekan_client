@@ -10,7 +10,7 @@ export function PartnersSlider() {
   ]);
 
   return (
-    <section className="py-[140px]">
+    <section className="mt-[140px]">
       <Container>
         <div className="flex flex-col items-center gap-[40px]">
           <SectionTitle type="small" text="our partners" />
