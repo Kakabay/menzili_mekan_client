@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import SectionTitle from '../ui/SectionTitle';
 import Container from '../Container';
 import clsx from 'clsx';
@@ -7,6 +7,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../ui/Button';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { v4 } from 'uuid';
+import { useOnClickOutside } from 'usehooks-ts';
 
 const selectOptions = [
   {
@@ -49,6 +51,7 @@ const Form = () => {
   const [selectOpened, setSelectOpened] = useState(false);
   const [activeSelectId, setActiveSelectId] = useState(0);
   const [optionSelected, setOptionSelected] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
@@ -65,8 +68,13 @@ const Form = () => {
     setActiveSelectId(id);
     setOptionSelected(true);
     setValue('budget', selectOptions[id].value, { shouldValidate: true });
-    // trigger('budget');
   };
+
+  const handleClickOutsideSelect = () => {
+    setSelectOpened(false);
+  };
+
+  useOnClickOutside(selectRef, handleClickOutsideSelect);
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log(data);
@@ -222,6 +230,7 @@ const Form = () => {
               <AnimatePresence>
                 {selectOpened && (
                   <motion.div
+                    ref={selectRef}
                     className="flex flex-col border-orochimaru absolute top-[100%] left-0 right-0 z-20 bg-white"
                     initial={{
                       opacity: 0,
@@ -240,6 +249,7 @@ const Form = () => {
                     }}>
                     {selectOptions.map((option) => (
                       <span
+                        key={v4()}
                         className={clsx(
                           'py-[4px] cursor-pointer px-[8px] text-[16px] text-eerieBlack leading-[24px] block hover:bg-blue hover:text-white transition-all duration-200',
                           {
