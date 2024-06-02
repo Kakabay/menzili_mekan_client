@@ -3,6 +3,7 @@ import Button from './ui/Button';
 import { YoutubeWindow } from './home/YoutubeWindow';
 import clsx from 'clsx';
 import Container from './Container';
+import { AnimatePresence } from 'framer-motion';
 
 type IProps = {
   size: 'small' | 'big';
@@ -36,7 +37,7 @@ const HeroSection = (props: IProps) => {
 
   return (
     <>
-      {activeVideo && <YoutubeWindow />}
+      <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
         className={clsx('relative overflow-hidden', {
           'h-screen': props.size === 'big',
