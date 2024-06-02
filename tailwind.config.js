@@ -80,6 +80,9 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      dropShadow: {
+        headerShadow: '0 2px 8px rgba(0, 0, 0, 0.10)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
