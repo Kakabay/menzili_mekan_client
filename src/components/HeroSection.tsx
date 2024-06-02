@@ -1,12 +1,12 @@
 import { useZusHome } from '@/zustand/useZusHome';
 import Button from './ui/Button';
-import YoutubeWindow from './home/YoutubeWindow';
+import { YoutubeWindow } from './home/YoutubeWindow';
 import clsx from 'clsx';
 import Container from './Container';
 
 type IProps = {
   size: 'small' | 'big';
-} & (HomeHeroProps | SmallProps | CartoonHeroProps | ServicesHeroProps);
+} & (HomeHeroProps | SmallProps | CartoonHeroProps | ServicesHeroProps | ContactHeroProps);
 
 type HomeHeroProps = {
   page: 'home';
@@ -24,6 +24,10 @@ type ServicesHeroProps = {
   title: string;
   subtitle: string;
 };
+type ContactHeroProps = {
+  page: 'contact';
+  title: string;
+};
 type SmallProps = { size: 'small'; title: string };
 
 const HeroSection = (props: IProps) => {
@@ -32,13 +36,12 @@ const HeroSection = (props: IProps) => {
 
   return (
     <>
-      {activeVideo && <YoutubeWindow path="https://www.youtube.com/watch?v=HIAcT5roxWY" />}
+      {activeVideo && <YoutubeWindow />}
       <section
         className={clsx('relative overflow-hidden', {
           'h-screen': props.size === 'big',
           'h-[460px]': props.size === 'small',
         })}>
-        {/* <video src="" className="w-full h-full"></video> */}
         <img src="/cover.png" alt="" className="w-full h-full object-cover" />
         <div
           className={clsx(
@@ -47,6 +50,7 @@ const HeroSection = (props: IProps) => {
               'bg-opacity-50':
                 (props.size === 'big' && props.page === 'home') ||
                 (props.size === 'big' && props.page === 'services') ||
+                (props.size === 'big' && props.page === 'contact') ||
                 props.size === 'small',
             },
             { 'bg-opacity-20': props.size === 'big' && props.page === 'cartoon' },
@@ -82,6 +86,14 @@ const HeroSection = (props: IProps) => {
                       <h1 className=" text-[32px] leading-[40px] tracking-[3%]">{props.title}</h1>
                       <div className="h-[1.5px] w-[80px] bg-white"></div>
                       <p className="text-[16px] leading-[24px]">{props.subtitle}</p>
+                    </div>
+                  </div>
+                ) : props.page === 'contact' ? (
+                  <div className="flex w-full justify-center">
+                    <div className="flex flex-col gap-[16px] text-white">
+                      <h1 className="leading-[125%] font-medium tracking-[3%] text-[64px] uppercase">
+                        {props.title}
+                      </h1>
                     </div>
                   </div>
                 ) : null}
