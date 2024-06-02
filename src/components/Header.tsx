@@ -2,33 +2,64 @@ import Container from './Container';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import LanguageDropdown from './ui/LanguageDropdown';
+import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface IProps {
   position: 'fixed' | 'normal';
 }
 
 const Header = ({ position }: IProps) => {
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header
-      className={clsx('z-20', {
+    <motion.header
+      className={clsx('z-20 transition-all duration-300', {
         'fixed top-0 left-0 right-0': position === 'fixed',
+        'bg-white/100 text-black drop-shadow-headerShadow': scrollY,
+        'bg-white/0 text-white': !scrollY,
       })}>
       <Container>
-        <nav className="flex text-white items-center justify-center gap-[56px] uppercase py-[48px] text-base font-[500] leading-[24px] tracking-[3%]">
+        <nav
+          className={clsx(
+            'flex items-center justify-center uppercase  text-base font-[500] leading-[24px] tracking-[3%]',
+            {
+              'gap-[56px] py-[48px]': !scrollY,
+              'gap-8 py-6': scrollY,
+            },
+          )}>
           <Link to={'/'}>home</Link>
           <Link to={'/works'}>cartoons</Link>
           <Link to={'/'}>
-            {' '}
-            <img src="/logo-text.svg" alt="logo" />
+            <AnimatePresence>
+              {scrollY ? <img src="/scroll-logo.svg" /> : <img src="/logo-text.svg" alt="logo" />}
+            </AnimatePresence>
           </Link>
           <Link to={'/services'}>services</Link>
-          <Link to={'/'}>contact</Link>
+          <Link to={'/contact'}>contact</Link>
         </nav>
+        <div
+          className={clsx('absolute right-[80px] text-white', {
+            'top-[56px]': !scrollY,
+            'top-[44px]': scrollY,
+          })}>
+          <LanguageDropdown scrollY={scrollY} />
+        </div>
       </Container>
-      <div className="absolute right-[80px] top-[56px] text-white">
-        <LanguageDropdown />
-      </div>
-    </header>
+    </motion.header>
   );
 };
 
