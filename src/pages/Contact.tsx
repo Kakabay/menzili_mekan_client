@@ -6,6 +6,7 @@ const Contact = () => {
   return (
     <div>
       <HeroSection size="big" page="contact" title="let's plan a project" />
+
       <section className="mt-[80px] mb-[140px]">
         <Container>
           <div className="flex justify-between mb-[140px]">

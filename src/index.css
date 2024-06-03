@@ -19,6 +19,66 @@
     flex: 0 0 172px;
     min-width: 0;
   }
+
+  .chevrons-container {
+    /* height: 60px; */
+    width: 38px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    z-index: 50;
+    transform: translateX(-50%);
+    /* overflow: hidden */
+  }
+
+  .chevron {
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+  }
+
+  .chevron:first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    animation: moveChevrons 3s ease-out 0s infinite;
+  }
+  .chevron:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    animation: moveChevrons 3s ease-out 1s infinite;
+  }
+  .chevron:nth-child(3) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    animation: moveChevrons 3s ease-out 2s infinite;
+  }
+
+  @keyframes moveChevrons {
+    25% {
+      opacity: 1;
+    }
+    33% {
+      opacity: 1;
+      transform: translateY(30px);
+    }
+    67% {
+      opacity: 1;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+    }
+  }
 }
 
 @layer utilities {
