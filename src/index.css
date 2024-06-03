@@ -20,3 +20,6 @@
     min-width: 0;
   }
 }
+
+@layer utilities {
+}

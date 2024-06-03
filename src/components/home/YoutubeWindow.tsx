@@ -27,7 +27,7 @@ export const YoutubeWindow = () => {
           height={30}
           src="https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close"
           alt="close"
-          className="w-[30px] h-[30px] "
+          className="w-[30px] h-[30px]"
         />
       </div>
       <ReactPlayer
