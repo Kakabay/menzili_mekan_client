@@ -31,7 +31,7 @@ const Header = ({ position }: IProps) => {
 
   return (
     <motion.header
-      className={clsx("z-20 transition-all duration-300", {
+      className={clsx("z-[1000] transition-all duration-300", {
         "fixed top-0 left-0 right-0": position === "fixed",
         "bg-white/100 text-black drop-shadow-headerShadow": scrollY,
         "bg-white/0 text-white": !scrollY,

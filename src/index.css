@@ -20,6 +20,21 @@
     min-width: 0;
   }
 
+  .embla-features__container {
+    display: flex;
+  }
+  .embla-features__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .embla-gallery__container {
+    @apply flex gap-6;
+  }
+  .embla-gallery__slide {
+    @apply flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_40%];
+  }
+
   .chevrons-container {
     /* height: 60px; */
     width: 38px;
