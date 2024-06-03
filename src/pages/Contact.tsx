@@ -1,3 +1,4 @@
+import AnimatedChevrons from '@/components/AnimatedChevrons';
 import Container from '@/components/Container';
 import HeroSection from '@/components/HeroSection';
 import { contactCardData } from '@/lib/database/Contact.data';
@@ -6,6 +7,7 @@ const Contact = () => {
   return (
     <div>
       <HeroSection size="big" page="contact" title="let's plan a project" />
+
       <section className="mt-[80px] mb-[140px]">
         <Container>
           <div className="flex justify-between mb-[140px]">

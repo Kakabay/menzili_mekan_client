@@ -4,6 +4,7 @@ import { YoutubeWindow } from './home/YoutubeWindow';
 import clsx from 'clsx';
 import Container from './Container';
 import { AnimatePresence } from 'framer-motion';
+import AnimatedChevrons from './AnimatedChevrons';
 
 type IProps = {
   size: 'small' | 'big';
@@ -37,6 +38,8 @@ const HeroSection = (props: IProps) => {
 
   return (
     <>
+      <AnimatedChevrons />
+
       <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
         className={clsx('relative overflow-hidden', {
