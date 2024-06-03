@@ -11,11 +11,13 @@ interface IProps {
 }
 
 const Header = ({ position }: IProps) => {
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(false);
 
   const handleScroll = () => {
-    setScrollY(window.scrollY);
+    setScrollY(window.scrollY > 100 ? true : false);
   };
+
+  console.log(scrollY);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -45,7 +47,34 @@ const Header = ({ position }: IProps) => {
           <Link to={'/works'}>cartoons</Link>
           <Link to={'/'}>
             <AnimatePresence>
-              {scrollY ? <img src="/scroll-logo.svg" /> : <img src="/logo-text.svg" alt="logo" />}
+              {scrollY ? (
+                <motion.img
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                  }}
+                  src="/scroll-logo.svg"
+                />
+              ) : (
+                <motion.img
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                  }}
+                  src="/logo-text.svg"
+                  alt="logo"
+                />
+              )}
             </AnimatePresence>
           </Link>
           <Link to={'/services'}>services</Link>

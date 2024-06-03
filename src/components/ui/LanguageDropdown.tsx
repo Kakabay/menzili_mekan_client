@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 
 const languages = ['en', 'tm', 'ru', 'tr', 'ch'];
-const LanguageDropdown = ({ scrollY }: { scrollY: number }) => {
+const LanguageDropdown = ({ scrollY }: { scrollY: boolean }) => {
   const [open, setOpen] = useState(false);
   const [activeLanguage, setActiveLanguage] = useState<string>(languages[0]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [scrollY]);
 
   const handleLanguageClick = (language: string) => {
     setActiveLanguage(language);
@@ -36,15 +40,26 @@ const LanguageDropdown = ({ scrollY }: { scrollY: number }) => {
         {open && (
           <motion.div
             initial={{
-              height: '0%',
+              opacity: 0,
+              // height: '0%',
             }}
             animate={{
-              height: '100%',
+              opacity: 1,
+
+              // height: '100%',
             }}
             exit={{
-              height: '0%',
+              opacity: 0,
+
+              // height: '0%',
             }}
-            className="flex flex-col gap-[4px] items-center origin-top overflow-hidden">
+            transition={{
+              duration: 0.3,
+            }}
+            className={clsx('flex flex-col gap-[4px] items-center origin-top overflow-hidden', {
+              'bg-white/100': scrollY,
+              'bg-white/00': !scrollY,
+            })}>
             {languages
               .filter((language) => language !== activeLanguage)
               .map((item, index) => (
