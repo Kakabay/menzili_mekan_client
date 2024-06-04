@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CartoonCard = () => {
   return (
     <div className="flex flex-col gap-[16px]">

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Container from './Container';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedChevrons from './AnimatedChevrons';
+import { useLocation } from 'react-router-dom';
 
 type IProps = {
   size: 'small' | 'big';
@@ -33,18 +34,20 @@ type ContactHeroProps = {
 type SmallProps = { size: 'small'; title: string };
 
 const HeroSection = (props: IProps) => {
+  const { pathname } = useLocation();
+
   const activeVideo = useZusHome((state) => state.activeVideo);
   const setActiveVideo = useZusHome((state) => state.setActiveVideo);
 
   return (
     <>
-      <AnimatedChevrons />
+      {pathname === '/' && <AnimatedChevrons />}
 
       <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
         className={clsx('relative overflow-hidden', {
           'h-screen': props.size === 'big',
-          'h-[460px]': props.size === 'small',
+          'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
         <img src="/cover.png" alt="" className="w-full h-full object-cover" />
         <div
@@ -61,12 +64,16 @@ const HeroSection = (props: IProps) => {
           )}>
           <Container>
             {props.size === 'big' ? (
-              <div className="flex flex-col gap-[40px] items-center">
+              <div className="flex flex-col gap-4 sm:gap-10 items-center">
                 {props.page === 'home' ? (
                   <>
-                    <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
-                      <h1 className=" text-[64px] leading-[80px] tracking-[3%]">{props.title}</h1>
-                      <h2 className="text-[32px] leading-[40px] tracking-[3%]">{props.subtitle}</h2>
+                    <div className="flex flex-col items-center justify-center gap-0 sm:gap-2 text-center uppercase text-white">
+                      <h1 className="text-[36px] sm:text-[64px] font-medium leading-[125%] tracking-[3%]">
+                        {props.title}
+                      </h1>
+                      <h2 className="text-[20px] sm:text-[32px] leading-[125%] tracking-[3%]">
+                        {props.subtitle}
+                      </h2>
                     </div>
                     <div onClick={() => setActiveVideo(true)}>
                       <Button text={props.buttonText} type="primary" />
@@ -75,7 +82,9 @@ const HeroSection = (props: IProps) => {
                 ) : props.page === 'cartoon' ? (
                   <>
                     <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
-                      <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
+                      <h1 className="text-[64px] leading-[80px] tracking-[3%] text-center">
+                        menzil mekan
+                      </h1>
                       <h2 className="text-[32px] leading-[40px] tracking-[3%]">
                         turkmen animation studio
                       </h2>
@@ -87,9 +96,13 @@ const HeroSection = (props: IProps) => {
                 ) : props.page === 'services' ? (
                   <div className="flex w-full justify-end">
                     <div className="flex flex-col gap-[16px] max-w-[596px] text-white">
-                      <h1 className=" text-[32px] leading-[40px] tracking-[3%]">{props.title}</h1>
+                      <h1 className="text-[24px] md:text-[32px] md:leading-[125%] leading-[115%] tracking-[3%]">
+                        {props.title}
+                      </h1>
                       <div className="h-[1.5px] w-[80px] bg-white"></div>
-                      <p className="text-[16px] leading-[24px]">{props.subtitle}</p>
+                      <p className="text-[14px] md:text-[16px] md:leading-[150%] leading-[140%]">
+                        {props.subtitle}
+                      </p>
                     </div>
                   </div>
                 ) : props.page === 'contact' ? (

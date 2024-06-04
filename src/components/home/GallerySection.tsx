@@ -1,12 +1,12 @@
-import useEmblaCarousel from "embla-carousel-react";
-import Container from "../Container";
-import SectionTitle from "../ui/SectionTitle";
+import useEmblaCarousel from 'embla-carousel-react';
+import Container from '../Container';
+import SectionTitle from '../ui/SectionTitle';
 
 const GallerySection = () => {
   const [emblaRef] = useEmblaCarousel();
 
   return (
-    <section className="mt-[140px]">
+    <section className="section-mt">
       <Container>
         <div className="flex flex-col gap-[40px] items-center">
           <SectionTitle text="our projects" type="big" />

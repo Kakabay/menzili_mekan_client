@@ -1,19 +1,16 @@
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import Container from "./Container";
-import SectionTitle from "./ui/SectionTitle";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import Container from './Container';
+import SectionTitle from './ui/SectionTitle';
 
 export function PartnersSlider() {
-  const [emblaRef] = useEmblaCarousel(
-    { loop: true, align: "start", containScroll: false },
-    [
-      Autoplay(),
-      // Fade(),
-    ]
-  );
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start', containScroll: false }, [
+    Autoplay(),
+    // Fade(),
+  ]);
 
   return (
-    <section className="mt-[140px]">
+    <section className="section-mt">
       <Container>
         <div className="flex flex-col items-center gap-[40px]">
           <SectionTitle type="small" text="our partners" />

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 @layer base {
   img {
     @apply w-full h-full object-cover;
@@ -97,4 +103,7 @@
 }
 
 @layer utilities {
+  .section-mt {
+    @apply mt-[72px] sm:mt-[140px];
+  }
 }

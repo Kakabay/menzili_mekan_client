@@ -81,17 +81,17 @@ const Form = () => {
   };
 
   return (
-    <section className="">
+    <section className="section-mt">
       <Container>
         <form
-          className="flex flex-col gap-[40px] items-center max-w-[580px] mx-auto"
+          className="flex flex-col gap-10 items-center max-w-[580px] mx-auto"
           onSubmit={handleSubmit(onSubmit)}>
           <SectionTitle
             type="small"
             text="START YOUR PROJECT"
             subtitle="Do you have an idea or project that need our help? We love to hear!"
           />
-          <div className="flex flex-col w-full gap-[24px]">
+          <div className="flex flex-col w-full gap-4 sm:gap-6">
             <div className="flex flex-col gap-[8px]">
               <input
                 {...register('name')}
@@ -111,7 +111,7 @@ const Form = () => {
               )}
             </div>
 
-            <div className="flex gap-[16px]">
+            <div className="flex sm:flex-row flex-col gap-[16px]">
               <div className="flex w-full flex-col gap-[8px]">
                 <input
                   {...register('email')}
@@ -267,7 +267,7 @@ const Form = () => {
           </div>
 
           <div className="flex flex-col gap-[24px] items-center">
-            <div className="flex gap-[8px]">
+            <div className="flex sm:flex-row flex-col items-center gap-[8px]">
               <svg
                 width="24"
                 height="24"
@@ -290,7 +290,7 @@ const Form = () => {
                 </defs>
               </svg>
 
-              <span className="text-[16px] leading-[24px] text-eerieBlack">
+              <span className="text-[16px] leading-[130%] text-eerieBlack text-center">
                 To send an application you need to fill in all fields
               </span>
             </div>
