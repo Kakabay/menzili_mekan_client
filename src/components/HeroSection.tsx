@@ -45,7 +45,7 @@ const HeroSection = (props: IProps) => {
 
       <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
-        className={clsx('relative overflow-hidden', {
+        className={clsx('relative overflow-hidden text-center', {
           'md:h-screen sm:h-[456px] h-[380px]': props.size === 'big',
           'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
@@ -64,7 +64,7 @@ const HeroSection = (props: IProps) => {
           )}>
           <Container>
             {props.size === 'big' ? (
-              <div className="flex flex-col gap-4 sm:gap-10 items-center">
+              <div className="flex flex-col gap-4 sm:gap-10 items-center pt-[76px] pb-[28px]">
                 {props.page === 'home' ? (
                   <>
                     <div className="flex flex-col items-center justify-center gap-0 sm:gap-2 text-center uppercase text-white">
@@ -94,9 +94,9 @@ const HeroSection = (props: IProps) => {
                     </div>
                   </>
                 ) : props.page === 'services' ? (
-                  <div className="flex w-full justify-end">
+                  <div className="flex w-full justify-end text-start">
                     <div className="flex flex-col gap-[16px] max-w-[596px] text-white">
-                      <h1 className="text-[24px] md:text-[32px] md:leading-[125%] leading-[115%] tracking-[3%]">
+                      <h1 className="text-[20px] md:text-[32px] md:leading-[125%] leading-[115%] tracking-[3%]">
                         {props.title}
                       </h1>
                       <div className="h-[1.5px] w-[80px] bg-white"></div>
@@ -117,7 +117,9 @@ const HeroSection = (props: IProps) => {
               </div>
             ) : props.size === 'small' ? (
               <div className="flex flex-col gap-[40px] items-center justify-center">
-                <h1 className=" text-[64px] leading-[80px] tracking-[3%]">menzil mekan</h1>
+                <h1 className=" text-[64px] font-semibold leading-[80px] tracking-[3%]">
+                  menzil mekan
+                </h1>
               </div>
             ) : null}
           </Container>

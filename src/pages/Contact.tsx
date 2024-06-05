@@ -18,7 +18,7 @@ const Contact = () => {
 
       <section className="md:mt-20 mt-10">
         <Container>
-          <div className="hidden md:flex justify-between">
+          <div className="flex sm:flex-row flex-col items-center sm:items-start gap-[18px] justify-between">
             {contactCardData.map((item) => (
               <div key={v4()} className="w-full max-w-[380px] text-center flex flex-col gap-4">
                 <img width={64} height={64} src={item.path} className="w-[64px] h-[64px] mx-auto" />
@@ -30,7 +30,7 @@ const Contact = () => {
             ))}
           </div>
 
-          <div className="md:hidden embla" ref={emblaRef}>
+          {/* <div className="md:hidden embla" ref={emblaRef}>
             <div className="embla-features__container">
               {contactCardData.map((item) => (
                 <div key={v4()} className="text-center flex flex-col gap-2 embla-features__slide">
@@ -47,7 +47,7 @@ const Contact = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </Container>
 
         <div className="relative w-full section-mt h-[300px] sm:h-[350px] md:h-[400px] lg:h-[600px] mb-[50px]">
