@@ -46,7 +46,7 @@ const HeroSection = (props: IProps) => {
       <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
         className={clsx('relative overflow-hidden', {
-          'h-screen': props.size === 'big',
+          'md:h-screen sm:h-[456px] h-[380px]': props.size === 'big',
           'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
         <img src="/cover.png" alt="" className="w-full h-full object-cover" />
