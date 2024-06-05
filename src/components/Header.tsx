@@ -1,5 +1,5 @@
 import Container from './Container';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import LanguageDropdown from './ui/LanguageDropdown';
 import { useEffect, useState } from 'react';
@@ -16,6 +16,8 @@ interface IProps {
 const Header = ({ position }: IProps) => {
   const [scrollY, setScrollY] = useState(false);
   const tab = useMediaQuery('(min-width: 980px)');
+
+  const { pathname } = useLocation();
 
   const burgerIsOpen = useZusBurger((state) => state.burgerIsOpen);
   const setBurgerIsOpen = useZusBurger((state) => state.setBurgerIsOpen);
@@ -50,10 +52,22 @@ const Header = ({ position }: IProps) => {
                 'gap-8 py-6': scrollY || burgerIsOpen,
               },
             )}>
-            <Link to={'/'} className="hidden tab:block">
+            <Link
+              to={'/'}
+              className={clsx('hidden tab:block', {
+                'text-gray': pathname === '/',
+                'text-white': pathname !== '/' && !scrollY,
+                'text-black': pathname !== '/' && scrollY,
+              })}>
               home
             </Link>
-            <Link to={'/works'} className="hidden tab:block">
+            <Link
+              to={'/works'}
+              className={clsx('hidden tab:block', {
+                'text-gray': pathname === '/works',
+                'text-white': pathname !== '/works' && !scrollY,
+                'text-black': pathname !== '/works' && scrollY,
+              })}>
               cartoons
             </Link>
             <Link to={'/'}>
@@ -88,10 +102,22 @@ const Header = ({ position }: IProps) => {
                 )}
               </AnimatePresence>
             </Link>
-            <Link to={'/services'} className="hidden tab:block">
+            <Link
+              to={'/services'}
+              className={clsx('hidden tab:block', {
+                'text-gray': pathname === '/services',
+                'text-white': pathname !== '/services' && !scrollY,
+                'text-black': pathname !== '/services' && scrollY,
+              })}>
               services
             </Link>
-            <Link to={'/contact'} className="hidden tab:block">
+            <Link
+              to={'/contact'}
+              className={clsx('hidden tab:block', {
+                'text-gray': pathname === '/contact',
+                'text-white': pathname !== '/contact' && !scrollY,
+                'text-black': pathname !== '/contact' && scrollY,
+              })}>
               contact
             </Link>
           </nav>

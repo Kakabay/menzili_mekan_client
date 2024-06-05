@@ -9,6 +9,8 @@ import { useLocation } from 'react-router-dom';
 
 type IProps = {
   size: 'small' | 'big';
+  video?: string;
+  banner?: string;
 } & (HomeHeroProps | SmallProps | CartoonHeroProps | ServicesHeroProps | ContactHeroProps);
 
 type HomeHeroProps = {
@@ -31,6 +33,7 @@ type ContactHeroProps = {
   page: 'contact';
   title: string;
 };
+
 type SmallProps = { size: 'small'; title: string };
 
 const HeroSection = (props: IProps) => {
@@ -47,7 +50,11 @@ const HeroSection = (props: IProps) => {
           'md:h-screen sm:h-[456px] h-[380px]': props.size === 'big',
           'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
-        <img src="/cover.png" alt="" className="w-full h-full object-cover" />
+        {props.size === 'small' || (props.size === 'big' && props.page === 'services') ? (
+          <img src={props.banner} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <video src=""></video>
+        )}
         {pathname === '/' && <AnimatedChevrons />}
         <div
           className={clsx(

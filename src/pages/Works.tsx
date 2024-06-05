@@ -10,7 +10,7 @@ const Works = () => {
 
   return (
     <>
-      <HeroSection size="small" title="cartoons" />
+      <HeroSection size="small" title="cartoons" banner="/projects-banner.png" />
       <WorksSection />
       <PartnersSlider />
     </>

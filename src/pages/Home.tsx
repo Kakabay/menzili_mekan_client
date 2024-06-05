@@ -12,6 +12,7 @@ const Home = () => {
   return (
     <>
       <HeroSection
+        video="sdfsdf"
         size="big"
         page="home"
         title="menzil mekan"

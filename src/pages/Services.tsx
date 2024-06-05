@@ -13,6 +13,7 @@ const Services = () => {
   return (
     <>
       <HeroSection
+        banner="/services-banner.png"
         size="big"
         page="services"
         title="A REAL-TIME ANIMATION STUDIO TO BOOST YOUR PRODUCTION SPEED"
