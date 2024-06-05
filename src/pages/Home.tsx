@@ -12,7 +12,8 @@ const Home = () => {
   return (
     <>
       <HeroSection
-        video="sdfsdf"
+        // video="sdfsdf"
+        banner="/cover.png"
         size="big"
         page="home"
         title="menzil mekan"

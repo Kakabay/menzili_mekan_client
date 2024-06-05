@@ -2,7 +2,6 @@ import Container from '../Container';
 import CartoonCard from './CartoonCard';
 
 const WorksSection = () => {
-  const emptyArray = new Array(6).fill(null);
   const arr = [
     {
       img: 'project1.png',

@@ -53,7 +53,7 @@ const HeroSection = (props: IProps) => {
         {props.size === 'small' || (props.size === 'big' && props.page === 'services') ? (
           <img src={props.banner} alt="" className="w-full h-full object-cover" />
         ) : (
-          <video src=""></video>
+          <img src={props.banner} alt="" className="w-full h-full object-cover" />
         )}
         {pathname === '/' && <AnimatedChevrons />}
         <div

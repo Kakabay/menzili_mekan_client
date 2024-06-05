@@ -63,21 +63,14 @@ const GallerySection = () => {
             <div className="embla-gallery__container">
               <div className="group pointer-events-auto embla-gallery__slide overflow-hidden relative">
                 <img
-                  src="/home1.png"
-                  alt="random image"
-                  className="group-hover:scale-110 transition duration-300 ease-in-out"
-                />
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <img
-                  src="/home2.png"
-                  alt="random image"
-                  className="group-hover:scale-110 transition duration-300 ease-in-out"
-                />
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <img
                   src="/home3.png"
+                  alt="random image"
+                  className="group-hover:scale-110 transition duration-300 ease-in-out"
+                />
+              </div>
+              <div className="group embla-gallery__slide overflow-hidden relative">
+                <img
+                  src="/home6.png"
                   alt="random image"
                   className="group-hover:scale-110 transition duration-300 ease-in-out"
                 />
@@ -98,7 +91,14 @@ const GallerySection = () => {
               </div>
               <div className="group embla-gallery__slide overflow-hidden relative">
                 <img
-                  src="/home6.png"
+                  src="/home1.png"
+                  alt="random image"
+                  className="group-hover:scale-110 transition duration-300 ease-in-out"
+                />
+              </div>
+              <div className="group embla-gallery__slide overflow-hidden relative">
+                <img
+                  src="/home2.png"
                   alt="random image"
                   className="group-hover:scale-110 transition duration-300 ease-in-out"
                 />
