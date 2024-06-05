@@ -37,7 +37,7 @@ const FeaturesSection = () => {
           ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((block) => (
-              <div className="embla-features__slide overflow-hidden">
+              <div className="embla-features__slide overflow-hidden" key={v4()}>
                 <FeaturesBlock key={v4()} text={block.text} title={block.title} />
               </div>
             ))}

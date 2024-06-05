@@ -2,15 +2,12 @@ import Container from '@/components/Container';
 import HeroSection from '@/components/HeroSection';
 import { contactCardData } from '@/lib/database/Contact.data';
 import { useEffect } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
 import { v4 } from 'uuid';
 
 const Contact = () => {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-
-  const [emblaRef] = useEmblaCarousel();
 
   return (
     <div>

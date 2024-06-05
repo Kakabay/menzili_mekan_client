@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
-import { useZusBurger } from '@/zustand/useZusBurger';
+// import { useZusBurger } from '@/zustand/useZusBurger';
 
 const languages = ['en', 'tm', 'ru', 'tr', 'ch'];
 const LanguageDropdown = ({ scrollY }: { scrollY: boolean }) => {
   const [open, setOpen] = useState(false);
   const [activeLanguage, setActiveLanguage] = useState<string>(languages[0]);
-  const burgerIsOpen = useZusBurger((state) => state.burgerIsOpen);
+  // const burgerIsOpen = useZusBurger((state) => state.burgerIsOpen);
 
   useEffect(() => {
     setOpen(false);

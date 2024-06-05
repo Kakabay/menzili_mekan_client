@@ -56,7 +56,7 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    setError,
+    // setError,
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
