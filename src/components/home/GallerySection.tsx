@@ -61,7 +61,7 @@ const GallerySection = () => {
 
           <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
             <div className="embla-gallery__container">
-              <div className="embla-gallery__slide overflow-hidden">
+              <div className="embla-gallery__slide overflow-hidden relative">
                 <img
                   src="/placeholder.png"
                   alt="random image"
