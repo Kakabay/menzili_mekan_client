@@ -1,8 +1,10 @@
+import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
 import ServicesCard from './ServicesCard';
 import useEmblaCarousel from 'embla-carousel-react';
 
 const ServicesBock = () => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   return (
     <>
@@ -21,7 +23,7 @@ const ServicesBock = () => {
         />
       </div>
 
-      <div className="md:hidden embla" ref={emblaRef}>
+      <div className="md:hidden embla flex flex-col gap-[40px]" ref={emblaRef}>
         <div className="embla-features__container">
           <div className="embla-features__slide">
             <ServicesCard
@@ -41,6 +43,17 @@ const ServicesBock = () => {
               text="Re60+ Optitrack cameras plus Faceware HMCs. One of largest motion capture facilities in South-East Asia ready for your mocap-related needs."
             />
           </div>
+        </div>
+        <div className="embla__dots">
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={'embla__dot'.concat(
+                index === selectedIndex ? ' embla__dot--selected' : '',
+              )}
+            />
+          ))}
         </div>
       </div>
     </>

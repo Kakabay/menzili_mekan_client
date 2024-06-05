@@ -2,7 +2,6 @@ import Container from '../Container';
 import FeaturesBlock from '../FeaturesBlock';
 import { v4 } from 'uuid';
 import useEmblaCarousel from 'embla-carousel-react';
-import clsx from 'clsx';
 import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
 
 const featuresData = [
