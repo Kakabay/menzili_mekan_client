@@ -3,6 +3,7 @@ import FeaturesBlock from '../FeaturesBlock';
 import { v4 } from 'uuid';
 import useEmblaCarousel from 'embla-carousel-react';
 import clsx from 'clsx';
+import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
 
 const featuresData = [
   {
@@ -20,7 +21,8 @@ const featuresData = [
 ];
 
 const FeaturesSection = () => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   return (
     <section className="pt-[40px]">
@@ -31,25 +33,28 @@ const FeaturesSection = () => {
           ))}
         </div>
 
-        <div className="md:hidden embla-features text-center" ref={emblaRef}>
+        <div
+          className="md:hidden embla-features text-center flex flex-col gap-[40px]"
+          ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((block) => (
-              <div key={v4()} className="embla-features__slide">
-                <FeaturesBlock text={block.text} title={block.title} />
+              <div className="embla-features__slide overflow-hidden">
+                <FeaturesBlock key={v4()} text={block.text} title={block.title} />
               </div>
             ))}
           </div>
-        </div>
 
-        <div className="flex md:hidden items-center gap-2 justify-center">
-          {featuresData.map((_, i) => (
-            <div
-              key={v4()}
-              className={clsx('h-2 w-2 rounded-full bg-lightBlue mt-7', {
-                // "bg-[#30B1E8]": i === i,
-              })}
-            />
-          ))}
+          <div className="embla__dots">
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                onClick={() => onDotButtonClick(index)}
+                className={'embla__dot'.concat(
+                  index === selectedIndex ? ' embla__dot--selected' : '',
+                )}
+              />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

@@ -1,9 +1,11 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import Container from '../Container';
 import SectionTitle from '../ui/SectionTitle';
+import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
 
 const GallerySection = () => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   return (
     <section className="section-mt">
@@ -57,36 +59,48 @@ const GallerySection = () => {
             </div>
           </div>
 
-          <div className="embla flex lg:hidden" ref={emblaRef}>
+          <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
             <div className="embla-gallery__container">
-              <div className="embla-gallery__slide">
+              <div className="embla-gallery__slide overflow-hidden">
                 <img
                   src="/placeholder.png"
                   alt="random image"
                   className="hover:scale-110 transition duration-300 ease-in-out"
                 />
               </div>
-              <div className="embla-gallery__slide">
+              <div className="embla-gallery__slide overflow-hidden">
                 <img
                   src="/placeholder.png"
                   alt="random image"
                   className="hover:scale-110 transition duration-300 ease-in-out"
                 />
               </div>
-              <div className="embla-gallery__slide">
+              <div className="embla-gallery__slide overflow-hidden">
                 <img
                   src="/placeholder.png"
                   alt="random image"
                   className="hover:scale-110 transition duration-300 ease-in-out"
                 />
               </div>
-              <div className="embla-gallery__slide">
+              <div className="embla-gallery__slide overflow-hidden">
                 <img
                   src="/placeholder.png"
                   alt="random image"
                   className="hover:scale-110 transition duration-300 ease-in-out"
                 />
               </div>
+            </div>
+
+            <div className="embla__dots">
+              {scrollSnaps.map((_, index) => (
+                <DotButton
+                  key={index}
+                  onClick={() => onDotButtonClick(index)}
+                  className={'embla__dot'.concat(
+                    index === selectedIndex ? ' embla__dot--selected' : '',
+                  )}
+                />
+              ))}
             </div>
           </div>
         </div>

@@ -41,8 +41,6 @@ const HeroSection = (props: IProps) => {
 
   return (
     <>
-      {pathname === '/' && <AnimatedChevrons />}
-
       <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
         className={clsx('relative overflow-hidden text-center', {
@@ -50,6 +48,7 @@ const HeroSection = (props: IProps) => {
           'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
         <img src="/cover.png" alt="" className="w-full h-full object-cover" />
+        {pathname === '/' && <AnimatedChevrons />}
         <div
           className={clsx(
             'overlay z-10 absolute top-0 left-0 w-full h-full bg-black  flex justify-center items-center text-white',
