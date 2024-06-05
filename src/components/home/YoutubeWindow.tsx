@@ -18,7 +18,7 @@ export const YoutubeWindow = () => {
       animate={{ y: 0 }}
       exit={{ y: '-100%' }}
       transition={{ ease: 'linear' }}
-      className="fixed top-0 right-0 bottom-0 left-0 z-[3000] px-5 overflow-hidden w-full h-screen bg-black/50">
+      className="fixed top-0 right-0 bottom-0 left-0 z-[3000] px-5 overflow-hidden w-full h-screen flex justify-center items-center bg-black/50">
       <div
         className="cursor-pointer absolute top-[70px] right-[30px] z-[5000] p-5"
         onClick={() => setActiveVideo(false)}>
@@ -30,15 +30,17 @@ export const YoutubeWindow = () => {
           className="w-[30px] h-[30px]"
         />
       </div>
-      <ReactPlayer
-        url={'https://www.youtube.com/watch?v=HIAcT5roxWY'}
-        width={'100%'}
-        height={'100%'}
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-      />
+      <div className="md:w-full md:h-full w-full h-[300px]">
+        <ReactPlayer
+          url={'https://www.youtube.com/watch?v=HIAcT5roxWY'}
+          width={'100%'}
+          height={'100%'}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+        />
+      </div>
     </motion.div>
   );
 };

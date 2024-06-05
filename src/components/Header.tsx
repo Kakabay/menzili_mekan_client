@@ -102,19 +102,19 @@ const Header = ({ position }: IProps) => {
               className="tab:hidden flex flex-col items-center justify-center gap-1 w-6 h-6 cursor-pointer">
               <div
                 className={clsx('w-[17.5px] h-[2px] rounded-[10px]', {
-                  'bg-white': !scrollY,
+                  'bg-white': !scrollY && !burgerIsOpen,
                   'bg-black': scrollY,
                   'bg-black/100 rotate-[45deg] translate-y-[2px]': burgerIsOpen,
                 })}></div>
               <div
                 className={clsx('w-[17.5px] h-[2px] rounded-[10px]', {
-                  'bg-white': !scrollY,
+                  'bg-white': !scrollY && !burgerIsOpen,
                   'bg-black': scrollY,
                   'bg-black/100 hidden': burgerIsOpen,
                 })}></div>
               <div
                 className={clsx('w-[17.5px] h-[2px] rounded-[10px]', {
-                  'bg-white': !scrollY,
+                  'bg-white': !scrollY && !burgerIsOpen,
                   'bg-black': scrollY,
                   'bg-black/100 rotate-[-45deg] translate-y-[-4px]': burgerIsOpen,
                 })}></div>
