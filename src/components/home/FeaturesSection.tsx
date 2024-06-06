@@ -28,17 +28,40 @@ const FeaturesSection = () => {
       <Container>
         <div className="hidden md:flex lg:gap-[32px] md:gap-4 text-center">
           {featuresData.map((block) => (
-            <FeaturesBlock key={v4()} text={block.text} title={block.title} />
+            <div key={v4()}>
+              <FeaturesBlock text={block.text} title={block.title} />
+            </div>
           ))}
         </div>
 
-        <div
+        {/* <div
           className="md:hidden embla-features text-center flex flex-col gap-[40px]"
           ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((block) => (
               <div className="embla-features__slide overflow-hidden" key={v4()}>
-                <FeaturesBlock key={v4()} text={block.text} title={block.title} />
+                <FeaturesBlock text={block.text} title={block.title} />
+              </div>
+            ))}
+          </div>
+
+          <div className="embla__dots">
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                onClick={() => onDotButtonClick(index)}
+                className={'embla__dot'.concat(
+                  index === selectedIndex ? ' embla__dot--selected' : '',
+                )}
+              />
+            ))}
+          </div>
+        </div> */}
+        <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
+          <div className="embla-features__container">
+            {featuresData.map((item) => (
+              <div className="embla-features__slide">
+                <FeaturesBlock text={item.text} title={item.title} />
               </div>
             ))}
           </div>
