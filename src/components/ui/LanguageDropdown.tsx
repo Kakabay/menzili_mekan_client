@@ -23,17 +23,23 @@ const LanguageDropdown = ({ scrollY }: { scrollY: boolean }) => {
     <div className="flex flex-col gap-[4px] items-center relative">
       <div
         className={clsx(
-          'border flex items-center justify-center py-[2px] px-[3px] cursor-pointer',
+          // 'border group flex items-center justify-center py-[2px] px-[3px] cursor-pointer hover:border-gray transition-all ease-out duration-300',
+          'border group flex items-center justify-center py-[2px] px-[3px] ',
           {
             'border-black': scrollY,
             'border-white': !scrollY,
           },
         )}
-        onClick={() => setOpen((prev) => !prev)}>
+        // onClick={() => setOpen((prev) => !prev)}
+      >
         <span
-          className={clsx('uppercase text-[14px] leading-[19.6px] tracking-[-3%]', {
-            'text-black': scrollY,
-          })}>
+          className={clsx(
+            'uppercase text-[14px] leading-[19.6px] tracking-[-3%]',
+            // 'uppercase text-[14px] leading-[19.6px] tracking-[-3%] group-hover:text-gray transition-all ease-out duration-300',
+            {
+              'text-black': scrollY,
+            },
+          )}>
           {activeLanguage}
         </span>
       </div>

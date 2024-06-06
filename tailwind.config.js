@@ -28,6 +28,7 @@ module.exports = {
         orochimaru: '#D9D9D9',
         uniformGrey: '#A8A8A8',
         lust: '#E41A1A',
+        germander_speedwell: '#008FCD',
 
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

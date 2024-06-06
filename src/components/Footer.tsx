@@ -18,13 +18,13 @@ const Footer = () => {
                   className="w-[58px] mx-auto sm:mx-0 h-[88px]"
                 />
                 <div className="">
-                  <h3 className="mb-3 text-[20px] leading-[140%]">We do animation!</h3>
-                  <h4 className="">The site of the animation studio «Menzil Mekan»</h4>
+                  <h3 className="mb-3 text-[20px] leading-[140%]">“MenzilMekan Animation”</h3>
+                  <h4 className="">The Animation Studio of TPS Advertising Agency ©2024</h4>
                 </div>
               </div>
-              <p className="text-lightBlue hidden sm:block text-[14px] leading-[115%]">
+              {/* <p className="text-lightBlue hidden sm:block text-[14px] leading-[115%]">
                 © 2024. All rights reserved.
-              </p>
+              </p> */}
             </div>
 
             <div className="sm:flex justify-between w-full hidden ">
@@ -38,7 +38,7 @@ const Footer = () => {
                     <Link
                       key={v4()}
                       to={item.link}
-                      className="text-[14px] leading-[16px] tracking-[6%] uppercase">
+                      className="footer-link text-[14px] leading-[16px] tracking-[6%] uppercase">
                       {item.title}
                     </Link>
                   ))}
@@ -74,12 +74,26 @@ const Footer = () => {
                   ))}
                 </div>
 
-                <img
-                  onClick={() => window.scroll(0, 0)}
-                  src="/footer/to-top.svg"
-                  alt=""
-                  className="hidden tab:block cursor-pointer w-[108px] h-6"
-                />
+                <div
+                  className="flex items-center cursor-pointer group "
+                  onClick={() => scrollTo(0, 0)}>
+                  <span className="uppercase text-lightBlue group-hover:text-white -tracking-[-2%] text-[14px] leading-[115%] transition-all duration-300 ease-out">
+                    back to top
+                  </span>
+                  <svg
+                    className="stroke-lightBlue group-hover:stroke-white transition-all duration-300 ease-out"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M11.9998 20V4M11.9998 4L8 9M11.9998 4L16 9"
+                      stroke="current"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>

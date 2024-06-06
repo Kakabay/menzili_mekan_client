@@ -16,8 +16,10 @@ const Home = () => {
         banner="/cover.png"
         size="big"
         page="home"
-        title="menzil mekan"
-        subtitle="turkmen animation studio"
+        title="MenzilMekan Animation"
+        subtitle="The Animation Studio of
+        TPS Advertising Agency
+        "
         buttonText="showreel"
       />
       <FeaturesSection />

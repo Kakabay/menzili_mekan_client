@@ -11,7 +11,7 @@ const Button = ({ text, type }: IProps) => {
       className={clsx(
         ' tracking-[1%] text-center rounded-full',
         {
-          'uppercase text-[18px] px-[32px] py-[16px] leading-[24.3px] bg-summerSky border-[1px] border-white font-medium text-white':
+          'uppercase text-[18px] px-[32px] py-[16px] leading-[24.3px] bg-summerSky border-[1px] border-white font-medium text-white  transition-all duration-300 ease-out button-primary':
             type === 'primary',
         },
         {
@@ -19,7 +19,7 @@ const Button = ({ text, type }: IProps) => {
             type === 'secondary',
         },
       )}>
-      {text}
+      <span className="z-10">{text}</span>
     </button>
   );
 };

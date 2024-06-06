@@ -16,8 +16,6 @@ export const contactCardData = [
   {
     path: '/contact/3.svg',
     title: 'Our office',
-    text: `
-    Level 2, Block A3, An Binh City, 232 Pham Van Dong, Bac Tu Liem, Hanoi, Vietnam
-    `,
+    text: '“Turkmenistan” cinema and concert centre, Oguzhan Street 13, Ashgabat',
   },
 ];

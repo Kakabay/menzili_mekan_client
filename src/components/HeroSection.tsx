@@ -55,7 +55,7 @@ const HeroSection = (props: IProps) => {
         ) : (
           <img src={props.banner} alt="" className="w-full h-full object-cover" />
         )}
-        {pathname === '/' && <AnimatedChevrons />}
+        {props.size === 'big' && <AnimatedChevrons />}
         <div
           className={clsx(
             'overlay z-10 absolute top-0 left-0 w-full h-full bg-black  flex justify-center items-center text-white',
@@ -67,6 +67,7 @@ const HeroSection = (props: IProps) => {
                 props.size === 'small',
             },
             { 'bg-opacity-20': props.size === 'big' && props.page === 'cartoon' },
+            { 'backdrop-blur-[20px]': props.size === 'big' && props.page === 'services' },
           )}>
           <Container>
             {props.size === 'big' ? (
@@ -89,7 +90,7 @@ const HeroSection = (props: IProps) => {
                   <>
                     <div className="flex flex-col items-center justify-center gap-[8px] text-center uppercase text-white">
                       <h1 className="text-[64px] leading-[80px] tracking-[3%] text-center">
-                        menzil mekan
+                        Our works
                       </h1>
                       <h2 className="text-[32px] leading-[40px] tracking-[3%]">
                         turkmen animation studio
@@ -122,9 +123,9 @@ const HeroSection = (props: IProps) => {
                 ) : null}
               </div>
             ) : props.size === 'small' ? (
-              <div className="flex flex-col gap-[40px] items-center justify-center">
-                <h1 className=" text-[64px] font-semibold leading-[80px] tracking-[3%]">
-                  menzil mekan
+              <div className="flex flex-col gap-[40px] items-center justify-center pt-[48px]">
+                <h1 className=" text-[64px] font-semibold leading-[80px] tracking-[3%] uppercase">
+                  Our portfolio
                 </h1>
               </div>
             ) : null}

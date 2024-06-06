@@ -46,7 +46,7 @@ const Header = ({ position }: IProps) => {
           <div className="hidden tab:block w-10 h-10 bg-transparent"></div>
           <nav
             className={clsx(
-              'flex items-center justify-center uppercase text-base font-[500] leading-[130%] tracking-[3%]',
+              'flex items-center justify-center uppercase text-base font-[500] leading-[130%] tracking-[3%] transition-all duration-300 ease-out',
               {
                 'gap-[56px] py-6 tab:py-[48px]': !scrollY,
                 'gap-8 py-6': scrollY || burgerIsOpen,
@@ -54,8 +54,9 @@ const Header = ({ position }: IProps) => {
             )}>
             <Link
               to={'/'}
-              className={clsx('hidden tab:block', {
-                'text-gray': pathname === '/',
+              className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
+                'text-orochimaru hover:text-orochimaru': pathname === '/' && !scrollY,
+                'text-bauhaus hover:text-bauhaus': pathname === '/' && scrollY,
                 'text-white': pathname !== '/' && !scrollY,
                 'text-black': pathname !== '/' && scrollY,
               })}>
@@ -63,12 +64,13 @@ const Header = ({ position }: IProps) => {
             </Link>
             <Link
               to={'/works'}
-              className={clsx('hidden tab:block', {
-                'text-gray': pathname === '/works',
+              className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
+                'text-orochimaru hover:text-orochimaru': pathname === '/works' && !scrollY,
+                'text-bauhaus hover:text-bauhaus': pathname === '/works' && scrollY,
                 'text-white': pathname !== '/works' && !scrollY,
                 'text-black': pathname !== '/works' && scrollY,
               })}>
-              cartoons
+              PORTFOLIO
             </Link>
             <Link to={'/'}>
               <AnimatePresence>
@@ -83,6 +85,9 @@ const Header = ({ position }: IProps) => {
                     exit={{
                       opacity: 0,
                     }}
+                    transition={{
+                      duration: 0.3,
+                    }}
                     src={tab ? '/scroll-logo.svg' : 'mob-logo.svg'}
                   />
                 ) : (
@@ -96,6 +101,9 @@ const Header = ({ position }: IProps) => {
                     exit={{
                       opacity: 0,
                     }}
+                    transition={{
+                      duration: 0.3,
+                    }}
                     src="/logo-text.svg"
                     alt="logo"
                   />
@@ -104,17 +112,19 @@ const Header = ({ position }: IProps) => {
             </Link>
             <Link
               to={'/services'}
-              className={clsx('hidden tab:block', {
-                'text-gray': pathname === '/services',
+              className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
+                'text-orochimaru hover:text-orochimaru': pathname === '/services' && !scrollY,
+                'text-bauhaus hover:text-bauhaus': pathname === '/services' && scrollY,
                 'text-white': pathname !== '/services' && !scrollY,
-                'text-black': pathname !== '/services' && scrollY,
+                'text-black ': pathname !== '/services' && scrollY,
               })}>
               services
             </Link>
             <Link
               to={'/contact'}
-              className={clsx('hidden tab:block', {
-                'text-gray': pathname === '/contact',
+              className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
+                'text-orochimaru hover:text-orochimaru': pathname === '/contact' && !scrollY,
+                'text-bauhaus hover:text-bauhaus': pathname === '/contact' && scrollY,
                 'text-white': pathname !== '/contact' && !scrollY,
                 'text-black': pathname !== '/contact' && scrollY,
               })}>

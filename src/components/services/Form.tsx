@@ -32,17 +32,15 @@ const selectOptions = [
 const phoneNumberRegex = /^\+\d{11}$/;
 
 const schema = z.object({
-  name: z.string({ required_error: 'Заполните поле!' }).min(2, 'Минимальная длина 2 символа'),
-  email: z
-    .string({ required_error: 'Заполните поле!' })
-    .email('Недействительный адрес электронной почты'),
+  name: z.string({ required_error: 'Fill in the blank!' }).min(2, 'Min length 2 symbols'),
+  email: z.string({ required_error: 'Fill in the blank!' }).email('Invalid e-mail address'),
   phone: z
-    .string({ message: 'Заполните поле!' })
+    .string({ message: 'Fill in the blank!' })
     .refine((value) => phoneNumberRegex.test(value.trim()), {
-      message: 'Заполните в формате +993 6* ******',
+      message: 'Fill in the following format +993 6X XXXXXX',
     }),
-  message: z.string({ required_error: 'Заполните поле!' }).min(5, 'Минимальная длина 5 символа'),
-  budget: z.string({ required_error: 'Выберите ваш бюджет' }).min(2, 'Выберите ваш бюджет'),
+  message: z.string({ required_error: 'Fill in the blank!' }).min(5, 'Min length 5 symbols'),
+  budget: z.string({ required_error: 'Select your budget' }).min(2, 'Select your budget'),
 });
 
 type FormFields = z.infer<typeof schema>;
@@ -97,7 +95,10 @@ const Form = () => {
                 {...register('name')}
                 type="text"
                 className={clsx(
-                  'block placeholder-uniformGrey hover:placeholder-gray w-full border-b border-orochimaru outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                  'block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                  {
+                    'border-orochimaru': !errors.name,
+                  },
                   {
                     'border-lust': errors.name,
                   },
@@ -117,7 +118,10 @@ const Form = () => {
                   {...register('email')}
                   type="text"
                   className={clsx(
-                    'block placeholder-uniformGrey hover:placeholder-gray w-full border-b border-orochimaru outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    'block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    {
+                      'border-orochimaru': !errors.email,
+                    },
                     {
                       'border-lust': errors.email,
                     },
@@ -135,7 +139,10 @@ const Form = () => {
                   {...register('phone')}
                   type="text"
                   className={clsx(
-                    'block placeholder-uniformGrey hover:placeholder-gray w-full border-b border-orochimaru outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    'block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    {
+                      'border-orochimaru': !errors.phone,
+                    },
                     {
                       'border-lust': errors.phone,
                     },
@@ -163,7 +170,10 @@ const Form = () => {
                   type="text"
                   id="message"
                   className={clsx(
-                    'block w-full border-b border-orochimaru outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    'block w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    {
+                      'border-orochimaru': !errors.message,
+                    },
                     {
                       'border-lust': errors.message,
                     },
@@ -189,7 +199,7 @@ const Form = () => {
                       {
                         'border-transparent hover:border-transparent hover:placeholder-uniformGrey':
                           selectOpened,
-                        'border-orochimaru hover:border-gray': !selectOpened,
+                        'border-orochimaru hover:border-gray': !selectOpened && !errors.budget,
                         'hover:text-eerieBlack ': optionSelected,
                         'border-lust': errors.budget,
                       },

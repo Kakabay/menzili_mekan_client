@@ -6,16 +6,16 @@ import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
 
 const featuresData = [
   {
-    title: 'awesome creativity',
-    text: 'Ingenious stories and animated worlds. Unforgettable images of favorite characters',
+    title: 'CARTOON',
+    text: 'We have more than fifty 2D and 3D short animations. Follow up AppKorpeler YouTube channel',
   },
   {
-    title: 'high-quality 2d and 3d animation',
-    text: 'Ingenious stories and animated worlds. Unforgettable images of favorite characters',
+    title: 'MOCAP',
+    text: 'We can provide highly precise motion capture for your games, commercials and animations. We use Xsens MVN Link motion capture system',
   },
   {
-    title: 'popularity and recognition',
-    text: 'Ingenious stories and animated worlds. Unforgettable images of favorite characters',
+    title: 'COMMERCIAL',
+    text: 'We created three mascots that they are effectively presenting their companies in many commercials. They are; Robo, Ynamly and Bulutjyk',
   },
 ];
 
@@ -28,7 +28,7 @@ const FeaturesSection = () => {
       <Container>
         <div className="hidden md:flex lg:gap-[32px] md:gap-4 text-center">
           {featuresData.map((block) => (
-            <div key={v4()}>
+            <div key={v4()} className="w-full">
               <FeaturesBlock text={block.text} title={block.title} />
             </div>
           ))}
@@ -60,7 +60,7 @@ const FeaturesSection = () => {
         <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((item) => (
-              <div className="embla-features__slide">
+              <div className="embla-features__slide w-full flex-1">
                 <FeaturesBlock text={item.text} title={item.title} />
               </div>
             ))}
