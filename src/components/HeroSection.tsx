@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import Container from './Container';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedChevrons from './AnimatedChevrons';
-import { useLocation } from 'react-router-dom';
 
 type IProps = {
   size: 'small' | 'big';
@@ -37,8 +36,6 @@ type ContactHeroProps = {
 type SmallProps = { size: 'small'; title: string };
 
 const HeroSection = (props: IProps) => {
-  const { pathname } = useLocation();
-
   const activeVideo = useZusHome((state) => state.activeVideo);
   const setActiveVideo = useZusHome((state) => state.setActiveVideo);
 
