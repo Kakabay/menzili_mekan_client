@@ -88,8 +88,9 @@ const Header = ({ position }: IProps) => {
                     transition={{
                       duration: 0.3,
                     }}
-                    src={tab ? '/scroll-logo.svg' : 'mob-logo.svg'}
-                    className="w-8 h-12"
+                    src={tab ? '/scroll-logo.svg' : '/mob-logo.svg'}
+                    className="w-full h-12"
+                    alt="logo"
                   />
                 ) : (
                   <motion.img

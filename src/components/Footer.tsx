@@ -46,10 +46,10 @@ const Footer = () => {
               <div className="flex flex-col justify-between items-end gap-[8px] tab:-ml-6 -ml-0">
                 <div className="">
                   <h4 className="text-[20px] mb-2 leading-[23px] tracking-[6%] uppercase w-full">
-                    6,286,645,610
+                    Over 2 000 000
                   </h4>
                   <h4 className="text-[14px] leading-[16px] tracking-[6%] uppercase w-full">
-                    views on all platforms
+                    Views on all Platform
                   </h4>
                 </div>
 

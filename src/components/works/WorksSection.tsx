@@ -20,12 +20,12 @@ const WorksSection = () => {
       text: '“Bad Habit” – Mergen and Merjen',
     },
     {
-      img: 'project4.png',
-      text: '“Ynamly” – Represents the company “Ynamly Maksat”',
-    },
-    {
       img: 'project5.png',
       text: '“Robo” – Well known mascot of ASTU',
+    },
+    {
+      img: 'project4.png',
+      text: '“Ynamly” – Represents the company “Ynamly Maksat”',
     },
   ];
 

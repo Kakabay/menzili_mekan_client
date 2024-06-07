@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useHover } from 'usehooks-ts';
 import Container from '../Container';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -50,6 +51,11 @@ const Form = () => {
   // const [optionSelected, setOptionSelected] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
+  const uploadFileRef = useRef<HTMLDivElement>(null);
+  const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const isHover = useHover(uploadFileRef);
+
   const {
     register,
     handleSubmit,
@@ -76,6 +82,8 @@ const Form = () => {
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log(data);
   };
+
+  console.log(inputFileRef.current?.name);
 
   return (
     <section className="section-mt">
@@ -174,7 +182,7 @@ const Form = () => {
                   type="text"
                   id="message"
                   className={clsx(
-                    'block w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
+                    'block w-full border-b  outline-none  text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
                     {
                       'border-orochimaru': !errors.message,
                     },
@@ -191,8 +199,8 @@ const Form = () => {
               </div>
             </div>
 
-            {/* <div className="relative">
-              <div className="flex flex-col gap-[8px]">
+            <div className="relative">
+              {/* <div className="flex flex-col gap-[8px]">
                 <div className="relative ">
                   <input
                     {...register('budget')}
@@ -238,8 +246,31 @@ const Form = () => {
                   <span className="text-lust leading-[18.2px] text-[14px]">
                     {errors.budget.message}
                   </span>
-                )}
-              </div> */}
+                )} */}
+              <div ref={uploadFileRef} className="relative cursor-pointer">
+                <input
+                  ref={inputFileRef}
+                  type="file"
+                  className={clsx(
+                    'border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0',
+                    { 'border-b-[#808080]': isHover },
+                  )}
+                />
+                <div
+                  className={clsx('absolute bottom-2 transition-all left-0 text-uniformGrey', {
+                    'text-[#808080]': isHover,
+                  })}>
+                  {inputFileRef.current?.value
+                    ? inputFileRef.current?.value
+                    : 'Please upload your file (rar or pdf, less than 15 MB)'}
+                </div>
+                <img
+                  src="/form/upload.svg"
+                  alt="upload"
+                  className="absolute top-2 right-0 h-6 w-6"
+                />
+              </div>
+            </div>
 
             <AnimatePresence>
               {selectOpened && (

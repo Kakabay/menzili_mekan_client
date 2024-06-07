@@ -60,7 +60,7 @@ const FeaturesSection = () => {
         <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((item) => (
-              <div className="embla-features__slide ">
+              <div key={v4()} className="embla-features__slide ">
                 <FeaturesBlock text={item.text} title={item.title} />
               </div>
             ))}
@@ -68,13 +68,15 @@ const FeaturesSection = () => {
 
           <div className="embla__dots">
             {scrollSnaps.map((_, index) => (
-              <DotButton
-                key={index}
-                onClick={() => onDotButtonClick(index)}
-                className={'embla__dot'.concat(
-                  index === selectedIndex ? ' embla__dot--selected' : '',
-                )}
-              />
+              <div key={v4()}>
+                <DotButton
+                  key={index}
+                  onClick={() => onDotButtonClick(index)}
+                  className={'embla__dot'.concat(
+                    index === selectedIndex ? ' embla__dot--selected' : '',
+                  )}
+                />
+              </div>
             ))}
           </div>
         </div>

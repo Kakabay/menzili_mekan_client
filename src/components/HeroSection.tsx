@@ -16,7 +16,7 @@ type IProps = {
 type HomeHeroProps = {
   page: 'home';
   title: string;
-  subtitle: string;
+  subtitle?: string;
   buttonText: string;
 };
 type CartoonHeroProps = {
@@ -49,13 +49,7 @@ const HeroSection = (props: IProps) => {
           'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
         {props.size === 'small' || (props.size === 'big' && props.page === 'services') ? (
-          <img
-            src={props.banner}
-            alt=""
-            className={clsx('w-full h-full object-cover', {
-              'scale-x-[-1]': props.banner === '/contact/contacts-banner.png',
-            })}
-          />
+          <img src={props.banner} alt="" className={clsx('w-full h-full object-cover')} />
         ) : (
           <img src={props.banner} alt="" className="w-full h-full object-cover" />
         )}
@@ -111,10 +105,12 @@ const HeroSection = (props: IProps) => {
                         {props.title}
                       </div>
                       <div className="h-[1.5px] w-[80px] bg-white"></div>
-                      <div
-                        className="text-[14px] flex flex-col md:text-[16px] md:leading-[150%] leading-[140%]"
-                        dangerouslySetInnerHTML={{ __html: props.subtitle }}
-                      />
+                      {props.subtitle && (
+                        <div
+                          className="text-[14px] flex flex-col md:text-[16px] md:leading-[150%] leading-[140%]"
+                          dangerouslySetInnerHTML={{ __html: props.subtitle }}
+                        />
+                      )}
                     </div>
                   </div>
                 ) : props.page === 'contact' ? (

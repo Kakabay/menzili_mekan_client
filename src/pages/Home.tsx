@@ -17,7 +17,6 @@ const Home = () => {
         size="big"
         page="home"
         title="Cartoon. Mockup. Commercial"
-        subtitle="turkem animation studio"
         buttonText="showreel"
       />
       <FeaturesSection />

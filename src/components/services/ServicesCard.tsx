@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 type Props = {
   title: string;
   text: string;
@@ -18,7 +20,7 @@ const ServicesCard = ({ title, text, features }: Props) => {
       </div>
       <div className="flex flex-col gap-[16px]">
         {features.map((item) => (
-          <div className="flex gap-[8px]">
+          <div key={v4()} className="flex gap-[8px]">
             <svg
               width="24"
               height="24"
