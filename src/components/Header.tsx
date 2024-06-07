@@ -89,6 +89,7 @@ const Header = ({ position }: IProps) => {
                       duration: 0.3,
                     }}
                     src={tab ? '/scroll-logo.svg' : 'mob-logo.svg'}
+                    className="w-8 h-12"
                   />
                 ) : (
                   <motion.img
@@ -131,7 +132,7 @@ const Header = ({ position }: IProps) => {
               contact
             </Link>
           </nav>
-          <div className="flex items-center gap-6 tab:mr-4 mr-0">
+          <div className="flex items-center gap-6">
             {!burgerIsOpen && <LanguageDropdown scrollY={scrollY} />}
             <div
               onClick={() => setBurgerIsOpen(!burgerIsOpen)}

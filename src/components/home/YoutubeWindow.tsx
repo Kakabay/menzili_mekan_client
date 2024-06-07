@@ -32,7 +32,7 @@ export const YoutubeWindow = () => {
       </div>
       <div className="md:w-full md:h-full w-full h-[300px]">
         <ReactPlayer
-          url={'https://www.youtube.com/watch?v=HIAcT5roxWY'}
+          url={'https://youtu.be/HssHv15zYDc?si=QkEF3RkvDEs7QMbI'}
           width={'100%'}
           height={'100%'}
           style={{

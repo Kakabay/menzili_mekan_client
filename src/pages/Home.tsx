@@ -13,13 +13,11 @@ const Home = () => {
     <>
       <HeroSection
         // video="sdfsdf"
-        banner="/cover.png"
+        banner="/home/main-page-banner.png"
         size="big"
         page="home"
-        title="MenzilMekan Animation"
-        subtitle="The Animation Studio of
-        TPS Advertising Agency
-        "
+        title="Cartoon. Mockup. Commercial"
+        subtitle="turkem animation studio"
         buttonText="showreel"
       />
       <FeaturesSection />

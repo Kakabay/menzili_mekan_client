@@ -4,24 +4,28 @@ import CartoonCard from './CartoonCard';
 const WorksSection = () => {
   const arr = [
     {
+      img: '/portfolio/1.png',
+      text: '“Freckled Friends” – Our animation series',
+    },
+    {
       img: 'project1.png',
-      text: 'Guild of Guardians eSports Announcement',
+      text: '“Lost Ball” – The most viewed cartoon in Turkmenistan',
     },
     {
       img: 'project2.png',
-      text: 'Guild of Guardians eSports Announcement',
+      text: '“My Game” – Another adventure of Mammetjan',
     },
     {
       img: 'project3.png',
-      text: 'Guild of Guardians eSports Announcement',
+      text: '“Bad Habit” – Mergen and Merjen',
     },
     {
       img: 'project4.png',
-      text: 'Guild of Guardians eSports Announcement',
+      text: '“Ynamly” – Represents the company “Ynamly Maksat”',
     },
     {
       img: 'project5.png',
-      text: 'Guild of Guardians eSports Announcement',
+      text: '“Robo” – Well known mascot of ASTU',
     },
   ];
 

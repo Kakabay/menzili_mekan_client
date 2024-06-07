@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import Container from './Container';
-import { navData } from '@/lib/database/Navigation.data';
 import { iconsData } from '@/lib/database/Footer.data';
 import { v4 } from 'uuid';
 
 const Footer = () => {
   return (
-    <footer className="bg-summerSky py-4 sm:py-10 section-mt text-white">
+    <footer className="bg-summerSky py-10 section-mt text-white">
       <Container>
         <div className="flex flex-col gap-12 ">
           <div className="flex flex-col sm:flex-row w-full ">
@@ -28,7 +27,7 @@ const Footer = () => {
             </div>
 
             <div className="sm:flex justify-between w-full hidden ">
-              <div className="flex flex-col gap-[24px]">
+              {/* <div className="flex flex-col gap-[24px]">
                 <h4 className="text-[14px] leading-[16px] tracking-[9%] font-[500] uppercase">
                   Navigation
                 </h4>
@@ -43,14 +42,14 @@ const Footer = () => {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
               <div className="flex flex-col justify-between items-end gap-[8px] tab:-ml-6 -ml-0">
                 <div className="">
                   <h4 className="text-[20px] mb-2 leading-[23px] tracking-[6%] uppercase w-full">
                     6,286,645,610
                   </h4>
                   <h4 className="text-[14px] leading-[16px] tracking-[6%] uppercase w-full">
-                    views on youtube
+                    views on all platforms
                   </h4>
                 </div>
 
@@ -63,7 +62,7 @@ const Footer = () => {
               </div>
 
               <div className="tab:flex hidden flex-col justify-between items-end">
-                <div className="grid grid-cols-4 gap-2 tab:gap-4 h-fit items-end">
+                <div className="flex gap-3 tab:gap-4 h-fit items-end">
                   {iconsData.map((item) => (
                     <Link
                       key={v4()}

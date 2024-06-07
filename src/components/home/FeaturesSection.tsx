@@ -10,12 +10,12 @@ const featuresData = [
     text: 'We have more than fifty 2D and 3D short animations. Follow up AppKorpeler YouTube channel',
   },
   {
-    title: 'MOCAP',
+    title: 'MOCKUP',
     text: 'We can provide highly precise motion capture for your games, commercials and animations. We use Xsens MVN Link motion capture system',
   },
   {
     title: 'COMMERCIAL',
-    text: 'We created three mascots that they are effectively presenting their companies in many commercials. They are; Robo, Ynamly and Bulutjyk',
+    text: 'We created three mascots that they are effectively presenting their companies in many commercials. They are Robo, Ynamly and Bulutjyk',
   },
 ];
 

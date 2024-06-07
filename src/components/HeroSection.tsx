@@ -7,6 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import AnimatedChevrons from './AnimatedChevrons';
 
 type IProps = {
+  title?: string;
   size: 'small' | 'big';
   video?: string;
   banner?: string;
@@ -48,7 +49,13 @@ const HeroSection = (props: IProps) => {
           'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
         })}>
         {props.size === 'small' || (props.size === 'big' && props.page === 'services') ? (
-          <img src={props.banner} alt="" className="w-full h-full object-cover" />
+          <img
+            src={props.banner}
+            alt=""
+            className={clsx('w-full h-full object-cover', {
+              'scale-x-[-1]': props.banner === '/contact/contacts-banner.png',
+            })}
+          />
         ) : (
           <img src={props.banner} alt="" className="w-full h-full object-cover" />
         )}
@@ -100,13 +107,14 @@ const HeroSection = (props: IProps) => {
                 ) : props.page === 'services' ? (
                   <div className="flex w-full justify-end text-start">
                     <div className="flex flex-col gap-[16px] max-w-[596px] text-white">
-                      <h1 className="text-[20px] md:text-[32px] md:leading-[125%] leading-[115%] tracking-[3%]">
+                      <div className="text-[20px] md:text-[32px] md:leading-[125%] leading-[115%] tracking-[3%]">
                         {props.title}
-                      </h1>
+                      </div>
                       <div className="h-[1.5px] w-[80px] bg-white"></div>
-                      <p className="text-[14px] md:text-[16px] md:leading-[150%] leading-[140%]">
-                        {props.subtitle}
-                      </p>
+                      <div
+                        className="text-[14px] flex flex-col md:text-[16px] md:leading-[150%] leading-[140%]"
+                        dangerouslySetInnerHTML={{ __html: props.subtitle }}
+                      />
                     </div>
                   </div>
                 ) : props.page === 'contact' ? (
@@ -122,7 +130,7 @@ const HeroSection = (props: IProps) => {
             ) : props.size === 'small' ? (
               <div className="flex flex-col gap-[40px] items-center justify-center pt-[48px]">
                 <h1 className=" text-[64px] font-semibold leading-[80px] tracking-[3%] uppercase">
-                  Our portfolio
+                  {props.title}
                 </h1>
               </div>
             ) : null}

@@ -11,7 +11,10 @@ const ServicesCard = ({ title, text, features }: Props) => {
         <h3 className="text-eerieBlack font-medium text-[24px] tracking-[-1%] leading-[30px]">
           {title}
         </h3>
-        <p className="text-bauhaus text-[16px] leading-[24px] ">{text}</p>
+        <div
+          className="text-bauhaus text-[16px] flex flex-col gap-4 leading-[24px]"
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
       </div>
       <div className="flex flex-col gap-[16px]">
         {features.map((item) => (

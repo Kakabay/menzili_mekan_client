@@ -12,7 +12,7 @@ const SectionTitle = ({ type, text, subtitle }: Props) => {
       <h2
         className={clsx('uppercase leading-[40px] text-center', {
           'text-[28px] md:text-[40px] leading-[60px] tracking-[4%]': type === 'big',
-          'text-[24px] md:text-[32px] leading-[40px] tracking-[3%]': type === 'small',
+          'text-[24px] md:text-[28px] leading-[32px] tracking-[3%]': type === 'small',
         })}>
         {text}
       </h2>

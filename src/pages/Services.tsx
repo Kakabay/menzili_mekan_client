@@ -16,8 +16,11 @@ const Services = () => {
         banner="/services-banner.png"
         size="big"
         page="services"
-        title="A REAL-TIME ANIMATION STUDIO TO BOOST YOUR PRODUCTION SPEED"
-        subtitle="Animost Studio was founded with the sole goal of helping fellow studios and partners to achieve a common goal: to produce animation content faster. We use motion capture and Unreal Engine in a real-time pipeline to achieve 2X ~ 4X production rate comparing to traditional approach. Find out more about our services here"
+        title="We provide high quality and creativity solutions in various fields:"
+        subtitle="<p>• CHARACTER & ANIMATION</p></br>
+        <p>• MOTION CAPTURE</p></br>
+        <p>• PRODUCT VISUALIZATION</p>
+        "
       />
       <section className="mt-10 md:mt-20">
         <Container>

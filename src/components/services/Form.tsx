@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import SectionTitle from '../ui/SectionTitle';
 import Container from '../Container';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -48,7 +47,7 @@ type FormFields = z.infer<typeof schema>;
 const Form = () => {
   const [selectOpened, setSelectOpened] = useState(false);
   const [activeSelectId, setActiveSelectId] = useState(0);
-  const [optionSelected, setOptionSelected] = useState(false);
+  // const [optionSelected, setOptionSelected] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -64,12 +63,12 @@ const Form = () => {
   const handleSelectOption = (id: number) => {
     setSelectOpened(false);
     setActiveSelectId(id);
-    setOptionSelected(true);
+    // setOptionSelected(true);
     setValue('budget', selectOptions[id].value, { shouldValidate: true });
   };
 
   const handleClickOutsideSelect = () => {
-    setSelectOpened(false);
+    // setSelectOpened(false);
   };
 
   useOnClickOutside(selectRef, handleClickOutsideSelect);
@@ -84,11 +83,16 @@ const Form = () => {
         <form
           className="flex flex-col gap-10 items-center max-w-[580px] mx-auto"
           onSubmit={handleSubmit(onSubmit)}>
-          <SectionTitle
+          {/* <SectionTitle
             type="small"
             text="START YOUR PROJECT"
             subtitle="Do you have an idea or project that need our help? We love to hear!"
-          />
+          /> */}
+          <div className="text-center flex flex-col gap-2">
+            <h2 className="md:text-[24px] leading-[32px]">START YOUR PROJECT</h2>
+            <h4 className="text-[15px] leading-[130%] md:leading-[150%] md:text-[16px] text-gray"></h4>
+          </div>
+
           <div className="flex flex-col w-full gap-4 sm:gap-6">
             <div className="flex flex-col gap-[8px]">
               <input
@@ -187,12 +191,12 @@ const Form = () => {
               </div>
             </div>
 
-            <div className="relative">
+            {/* <div className="relative">
               <div className="flex flex-col gap-[8px]">
                 <div className="relative ">
                   <input
                     {...register('budget')}
-                    onClick={() => setSelectOpened((prev) => !prev)}
+                    // onClick={() => setSelectOpened((prev) => !prev)}
                     type="text"
                     className={clsx(
                       'block group cursor-pointer placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray transition-all duration-200',
@@ -235,46 +239,46 @@ const Form = () => {
                     {errors.budget.message}
                   </span>
                 )}
-              </div>
+              </div> */}
 
-              <AnimatePresence>
-                {selectOpened && (
-                  <motion.div
-                    ref={selectRef}
-                    className="flex flex-col border-orochimaru absolute top-[100%] left-0 right-0 z-20 bg-white"
-                    initial={{
-                      opacity: 0,
-                      y: '-5%',
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: '0%',
-                    }}
-                    exit={{
-                      opacity: 0,
-                      y: '-5%',
-                    }}
-                    transition={{
-                      duration: 0.2,
-                    }}>
-                    {selectOptions.map((option) => (
-                      <span
-                        key={v4()}
-                        className={clsx(
-                          'py-[4px] cursor-pointer px-[8px] text-[16px] text-eerieBlack leading-[24px] block hover:bg-blue hover:text-white transition-all duration-200',
-                          {
-                            'bg-blue text-white': option.id === activeSelectId,
-                          },
-                        )}
-                        onClick={() => handleSelectOption(option.id)}>
-                        {option.value}
-                      </span>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <AnimatePresence>
+              {selectOpened && (
+                <motion.div
+                  ref={selectRef}
+                  className="flex flex-col border-orochimaru absolute top-[100%] left-0 right-0 z-20 bg-white"
+                  initial={{
+                    opacity: 0,
+                    y: '-5%',
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: '0%',
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: '-5%',
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}>
+                  {selectOptions.map((option) => (
+                    <span
+                      key={v4()}
+                      className={clsx(
+                        'py-[4px] cursor-pointer px-[8px] text-[16px] text-eerieBlack leading-[24px] block hover:bg-blue hover:text-white transition-all duration-200',
+                        {
+                          'bg-blue text-white': option.id === activeSelectId,
+                        },
+                      )}
+                      onClick={() => handleSelectOption(option.id)}>
+                      {option.value}
+                    </span>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
+          {/* </div> */}
 
           <div className="flex flex-col gap-[24px] items-center">
             <div className="flex sm:flex-row flex-col items-center gap-[8px]">

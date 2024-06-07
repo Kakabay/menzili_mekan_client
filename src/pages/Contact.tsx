@@ -14,8 +14,8 @@ const Contact = () => {
       <HeroSection
         size="small"
         page="contact"
-        title="let's plan a project"
-        banner="/contact-banner.png"
+        title="let's talk!"
+        banner="/contact/contacts-banner.png"
       />
 
       <section className="md:mt-20 mt-10">
