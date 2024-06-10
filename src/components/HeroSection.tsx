@@ -46,10 +46,16 @@ const HeroSection = (props: IProps) => {
       <section
         className={clsx('relative overflow-hidden text-center', {
           'md:h-screen sm:h-[456px] h-[380px]': props.size === 'big',
-          'h-[360px] sm:h-[400px] lg:h-[460px]': props.size === 'small',
+          'h-[360px] sm:h-[400px] lg:h-[600px]': props.size === 'small',
         })}>
         {props.size === 'small' || (props.size === 'big' && props.page === 'services') ? (
-          <img src={props.banner} alt="" className={clsx('w-full h-full object-cover')} />
+          <img
+            src={props.banner}
+            alt="banner"
+            className={clsx('w-full h-full object-cover', {
+              'object-bottom': props.size === 'small',
+            })}
+          />
         ) : (
           <img src={props.banner} alt="" className="w-full h-full object-cover" />
         )}
