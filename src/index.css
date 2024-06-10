@@ -199,4 +199,11 @@
   .section-mt {
     @apply mt-[72px] sm:mt-[140px];
   }
+  .section-mb {
+    @apply mb-20 sm:mb-[140px] tab:mb-[80px];
+  }
+
+  .project-info-ellips {
+    @apply bg-summerSky rounded-full tab:w-[216px] w-[168px] tab:h-[216px] h-[168px] text-center pt-2;
+  }
 }
