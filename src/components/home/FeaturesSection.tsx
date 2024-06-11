@@ -26,7 +26,7 @@ const FeaturesSection = () => {
   return (
     <section className="pt-[40px]">
       <Container>
-        <div className="hidden md:flex lg:gap-[32px] md:gap-4 text-center">
+        <div className="hidden lg:flex gap-[32px] md:gap-4 text-center">
           {featuresData.map((block) => (
             <div key={v4()} className="w-full">
               <FeaturesBlock text={block.text} title={block.title} />
@@ -57,7 +57,7 @@ const FeaturesSection = () => {
             ))}
           </div>
         </div> */}
-        <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
+        <div className="embla lg:hidden flex flex-col gap-10" ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((item) => (
               <div key={item.title} className="embla-features__slide ">

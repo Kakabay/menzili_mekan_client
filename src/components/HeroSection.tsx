@@ -74,7 +74,7 @@ const HeroSection = (props: IProps) => {
         {props.size === 'big' && <AnimatedChevrons />}
         <div
           className={clsx(
-            'overlay z-10 absolute top-0 left-0 w-full h-full bg-black  flex justify-center items-center text-white',
+            'overlay z-10 absolute top-0 left-0 w-full h-full bg-black flex justify-center items-center text-white',
             {
               'bg-opacity-50':
                 (props.size === 'big' && props.page === 'home') ||
