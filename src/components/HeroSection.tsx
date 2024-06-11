@@ -146,8 +146,8 @@ const HeroSection = (props: IProps) => {
                   </div>
                 ) : props.page === 'project' ? (
                   <div className="flex w-full h-full justify-center">
-                    <div className="flex flex-col gap-12 text-white">
-                      <img src={props.icon} />
+                    <div className="flex flex-col justify-end pb-20 h-full gap-12 text-white">
+                      <img src={props.icon} className="w-[144px] h-[80px]" />
                       <button
                         type="button"
                         className="rounded-full border-[1px] border-white leading-[135%] py-3 px-6">

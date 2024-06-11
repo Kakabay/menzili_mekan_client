@@ -321,8 +321,8 @@ const Form = () => {
                 xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_37_3180)">
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M12 5C11.4477 5 11 5.44772 11 6V13C11 13.5523 11.4477 14 12 14C12.5523 14 13 13.5523 13 13V6C13 5.44772 12.5523 5 12 5ZM12 19C12.5523 19 13 18.5523 13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19Z"
                     fill="#1A1A1A"
                   />

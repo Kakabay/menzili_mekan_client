@@ -1,58 +1,97 @@
 import useEmblaCarousel from 'embla-carousel-react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import Container from '../Container';
+import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
+import { charactersData } from '@/lib/database/Project.data';
 
 export const CharactersSection = () => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
 
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
     <section className="section-mt">
-      <div className="w-full h-[220px] relative flex justify-center items-center mb-20">
+      <div className="w-full h-[84px] sm:h-[188px] tab:h-[220px] relative flex justify-center items-center section-mb">
         <img src="/project/characters.png" alt="bg-image" className="w-full h-full" />
-        <div className="uppercase text-center text-white text-[48px] leading-[125%] absolute top-[50%] translate-y-[-50%] justify-center w-full">
+        <div className="uppercase text-center text-white sm:text-[48px] text-[28px] sm:leading-[125%] leading-[130%] absolute top-[50%] translate-y-[-50%] justify-center w-full">
           main characters
         </div>
       </div>
 
       <Container>
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container">
-            <div className="">
-              <div className="flex gap-8">
-                <img src="" alt="" className="/project/slider-1.png" />
-                <img src="" alt="" className="/project/slider-1.png" />
-                <img src="" alt="" className="/project/slider-1.png" />
+        <div className="flex flex-col items-center relative">
+          <div className="flex items-center">
+            <button
+              type="button"
+              onClick={scrollPrev}
+              className="w-8 h-8 absolute hidden min-[1300px]:block -left-12 cursor-pointer">
+              <img src="/project/arrow.svg" alt="" className="" />
+            </button>
+
+            <button
+              type="button"
+              onClick={scrollPrev}
+              className="min-[1300px]:hidden block w-8 h-8">
+              <img src="/project/arrow.svg" alt="" className="w-full h-full" />
+            </button>
+
+            <div className="embla" ref={emblaRef}>
+              <div className="flex items-center sm:gap-14 gap-2">
+                {charactersData.map((item) => (
+                  <div key={item.id} className="flex-[0_0_100%] justify-center items-center">
+                    <div className="hidden md:flex gap-8 justify-center">
+                      {item.images.map((path, i) => (
+                        <div key={i} className="h-[376px] w-full">
+                          <img src={path} alt="" className="h-full w-full" />
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="block md:hidden min-w-0 justify-center items-center">
+                      <img src={item.images[0]} alt="photo" />
+                    </div>
+
+                    <h4 className="uppercase font-bold sm:text-[32px] text-[24px] leading-[125%] sm:my-8 my-6 text-bauhaus">
+                      {item.title}
+                    </h4>
+
+                    <p className="text-[16px] sm:text-[28px] font-light leading-[140%]">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
               </div>
-
-              {/* <img
-                  src="/project/pagination-arrow.svg"
-                  alt="arrow"
-                  className="w-8 h-8 -translate-x-3 z-[100] cursor-pointer"
-                /> */}
-
-              <h4 className="uppercase font-bold text-[32px] leading-[125%] my-8 text-bauhaus">
-                Littlefox
-              </h4>
-
-              {/* <img
-                  src="/project/pagination-arrow.svg"
-                  alt="arrow"
-                  className="w-8 h-8 rotate-180 absolute top-0 bottom-0 right-0 z-[100] cursor-pointer"
-                /> */}
-
-              <p className="text-[28px] font-light leading-[140%]">
-                Littlefox is a kind, calm, careful girl. She loves to bake pies, cook compote and
-                treat friends. She wants to take part in the games and adventures of the Bears.
-                Littlefox is younger than bears, but she is much wiser than them. She always finds
-                the right decision instinctively, but expresses her opinion very tactfully. She
-                always speaks delicately.
-              </p>
             </div>
+
+            <button
+              type="button"
+              onClick={scrollNext}
+              className="w-8 h-8 absolute hidden min-[1300px]:block -right-12 cursor-pointer">
+              <img src="/project/arrow.svg" alt="" className="rotate-180 " />
+            </button>
           </div>
+        </div>
+        <div className="embla__dots mt-8">
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={'embla__dot'.concat(
+                index === selectedIndex ? ' embla__dot--selected' : '',
+              )}
+            />
+          ))}
         </div>
       </Container>
     </section>

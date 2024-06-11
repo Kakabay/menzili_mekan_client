@@ -1,6 +1,7 @@
 import HeroSection from '@/components/HeroSection';
 import { CharactersSection } from '@/components/project/CharactersSection';
 import { InfoSection } from '@/components/project/InfoSection';
+import { PostersSection } from '@/components/project/PostersSection';
 import { ShotsSection } from '@/components/project/ShotsSection';
 
 const Project = () => {
@@ -17,6 +18,7 @@ const Project = () => {
       <InfoSection />
       <CharactersSection />
       <ShotsSection />
+      <PostersSection />
     </div>
   );
 };

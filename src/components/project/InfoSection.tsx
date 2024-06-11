@@ -3,23 +3,35 @@ import Container from '../Container';
 export const InfoSection = () => {
   return (
     <Container>
-      <div className="mt-20">
-        <div className="flex md:flex-nowrap flex-wrap text-white md:justify-between justify-center md:gap-0 gap-x-3 tab:px-20 md:px-[60px] px-8 mb-14">
+      <div className="sm:mt-20 mt-10">
+        <div className="flex md:flex-nowrap flex-wrap text-white md:justify-between justify-center md:gap-0 gap-x-3 tab:px-20 md:px-[60px] px-0 sm:mb-14 mb-10">
           <div className="project-info-ellips">
-            <div className="text-[72px] leding-[110%] mb-3 font-semibold">234</div>
-            <div className="text-[28px] leding-[110%] text-medium">episodes</div>
+            <div className="tab:text-[72px] sm:text-[48px] text-[40px] leding-[110%] sm:mb-3 mb-2 font-semibold">
+              234
+            </div>
+            <div className="tab:text-[28px] sm:text-[22px] text-[18px] leding-[110%] text-medium">
+              episodes
+            </div>
           </div>
           <div className="project-info-ellips">
-            <div className="text-[72px] leding-[110%] mb-3 font-semibold">5.5</div>
-            <div className="text-[28px] leding-[110%] text-medium">minutes</div>
+            <div className="tab:text-[72px] sm:text-[48px] text-[40px] leding-[110%] sm:mb-3 mb-2 font-semibold">
+              5.5
+            </div>
+            <div className="tab:text-[28px] sm:text-[22px] text-[18px] leding-[110%] text-medium">
+              minutes
+            </div>
           </div>
           <div className="project-info-ellips">
-            <div className="text-[72px] leding-[110%] mb-3 font-semibold">3-6</div>
-            <div className="text-[28px] leding-[110%] text-medium">years old</div>
+            <div className="tab:text-[72px] sm:text-[48px] text-[40px] leding-[110%] sm:mb-3 mb-2 font-semibold">
+              3-6
+            </div>
+            <div className="tab:text-[28px] sm:text-[22px] text-[18px] leding-[110%] text-medium">
+              years old
+            </div>
           </div>
         </div>
 
-        <p className="text-bauhaus leading-[150%] text-[24px] text-center font-light">
+        <p className="text-bauhaus leading-[150%] sm:text-[24px] text-[18px] text-center font-light">
           The adventures of energetic mischief-makers: Bucky, the brown bear, a white bear named
           Bjorn, and their friend Littlefox. Bucky is all about gadgets and technology, Bjorn
           is a child of nature, and Littlefox loves to bake pies and treat her many friends. In each

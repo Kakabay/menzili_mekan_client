@@ -60,7 +60,7 @@ const FeaturesSection = () => {
         <div className="embla flex flex-col gap-[40px] lg:hidden" ref={emblaRef}>
           <div className="embla-features__container">
             {featuresData.map((item) => (
-              <div key={v4()} className="embla-features__slide ">
+              <div key={item.title} className="embla-features__slide ">
                 <FeaturesBlock text={item.text} title={item.title} />
               </div>
             ))}
