@@ -27,7 +27,9 @@ const Contact = () => {
                 <h2 className="text-[24px] text-eerieBlack font-medium leading-[125%]">
                   {item.title}
                 </h2>
-                <div className="text-[16px] leading-[150%] text-bauhaus">{item.text}</div>
+                <div
+                  className="text-[16px] leading-[150%] text-bauhaus"
+                  dangerouslySetInnerHTML={{ __html: item.text }}></div>
               </div>
             ))}
           </div>

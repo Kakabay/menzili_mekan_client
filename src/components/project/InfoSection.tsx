@@ -3,7 +3,7 @@ import Container from '../Container';
 export const InfoSection = () => {
   return (
     <Container>
-      <div className="sm:mt-20 mt-10">
+      <div id="project" className="sm:mt-20 mt-10">
         <div className="flex md:flex-nowrap flex-wrap text-white md:justify-between justify-center md:gap-0 gap-x-3 tab:px-20 md:px-[60px] px-0 sm:mb-14 mb-10">
           <div className="project-info-ellips">
             <div className="tab:text-[72px] sm:text-[48px] text-[40px] leding-[110%] sm:mb-3 mb-2 font-semibold">

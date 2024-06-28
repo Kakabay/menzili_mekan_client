@@ -8,6 +8,7 @@ const Project = () => {
   return (
     <div>
       <HeroSection
+        project
         size="big"
         page="project"
         banner="/project/cover.png"

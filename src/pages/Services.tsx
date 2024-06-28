@@ -16,13 +16,11 @@ const Services = () => {
         banner="/services-banner.png"
         size="big"
         page="services"
-        title="We provide high quality and creativity solutions in various fields:"
-        subtitle="<p>• CHARACTER & ANIMATION</p></br>
-        <p>• MOTION CAPTURE</p></br>
-        <p>• PRODUCT VISUALIZATION</p>
-        "
+        title="<p>CHARACTER & ANIMATION</p></br> <p>MOTION CAPTURE</p></br>
+        <p>PRODUCT VISUALIZATION</p>"
+        subtitle="<p>We provide high quality and creativity solutions in various fields.</p></br>"
       />
-      <section className="mt-10 md:mt-20">
+      <section id="services" className="mt-10 md:mt-20">
         <Container>
           <div className="flex flex-col gap-[40px]">
             <SectionTitle type="big" text="Our services" />

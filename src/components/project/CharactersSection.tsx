@@ -3,10 +3,13 @@ import { useCallback, useEffect } from 'react';
 import Container from '../Container';
 import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
 import { charactersData } from '@/lib/database/Project.data';
+import clsx from 'clsx';
+import { useMediaQuery } from 'usehooks-ts';
 
 export const CharactersSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
+  const screen = useMediaQuery('(min-width: 1300px)');
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -30,24 +33,27 @@ export const CharactersSection = () => {
       </div>
 
       <Container>
-        <div className="flex flex-col items-center relative">
+        <div className="flex flex-col relative">
           <div className="flex items-center">
             <button
               type="button"
               onClick={scrollPrev}
-              className="w-8 h-8 absolute hidden min-[1300px]:block -left-12 cursor-pointer">
+              className={clsx('md:inline-block hidden cursor-pointer', {
+                'absolute w-8 h-8 -left-12 z-[100]': screen,
+                'translate-x-5 w-[300px] h-8': !screen,
+              })}>
               <img src="/project/arrow.svg" alt="" className="" />
             </button>
 
-            <button
+            {/* <button
               type="button"
               onClick={scrollPrev}
-              className="min-[1300px]:hidden block w-8 h-8">
-              <img src="/project/arrow.svg" alt="" className="w-full h-full" />
-            </button>
+              className="min-[1300px]:hidden block w-8 h-8 translate-x-5">
+              <img src="/project/arrow.svg" alt="" className="" />
+            </button> */}
 
-            <div className="embla" ref={emblaRef}>
-              <div className="flex items-center sm:gap-14 gap-2">
+            <div className="embla mx-0 md:mx-10 min-[1300px]:mx-0" ref={emblaRef}>
+              <div className="flex items-center sm:gap-14 gap-6">
                 {charactersData.map((item) => (
                   <div key={item.id} className="flex-[0_0_100%] justify-center items-center">
                     <div className="hidden md:flex gap-8 justify-center">
@@ -77,7 +83,10 @@ export const CharactersSection = () => {
             <button
               type="button"
               onClick={scrollNext}
-              className="w-8 h-8 absolute hidden min-[1300px]:block -right-12 cursor-pointer">
+              className={clsx('md:block hidden cursor-pointer', {
+                'absolute w-8 h-8 -right-12 z-[100]': screen,
+                'block -translate-x-5 w-[300px] h-8': !screen,
+              })}>
               <img src="/project/arrow.svg" alt="" className="rotate-180 " />
             </button>
           </div>

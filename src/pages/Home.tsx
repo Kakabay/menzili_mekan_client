@@ -16,7 +16,7 @@ const Home = () => {
         banner="/home/main-page-banner.png"
         size="big"
         page="home"
-        title="Cartoon. Mockup. Commercial"
+        title="Cartoon. Mocap. Commercial"
         buttonText="showreel"
       />
       <FeaturesSection />

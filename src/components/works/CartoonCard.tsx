@@ -9,7 +9,9 @@ const CartoonCard = ({ img, text }: IProps) => {
       <div className="max-h-[161px] w-full overflow-hidden">
         <img src={img} alt="cover" className="w-full h-full object-cover" />
       </div>
-      <h4 className="text-[14px] font-medium leading-[19.6px] tracking-[-1%]">{text}</h4>
+      <h4 className="text-[16px] px-2 text-center font-medium leading-[19.6px] tracking-[-1%]">
+        {text}
+      </h4>
     </div>
   );
 };

@@ -46,9 +46,6 @@ export function PartnersSlider() {
               <div className="embla__slide p-[20px]">
                 <img className="w-full h-auto" src="/partner10.png" alt="pixar logo" />
               </div>
-              <div className="embla__slide p-[20px]">
-                <img className="w-full h-auto" src="/partner11.png" alt="pixar logo" />
-              </div>
             </div>
           </div>
         </div>

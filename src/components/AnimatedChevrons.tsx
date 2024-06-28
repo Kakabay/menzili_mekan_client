@@ -1,6 +1,6 @@
-const AnimatedChevrons = () => {
+const AnimatedChevrons = ({}) => {
   return (
-    <div className="chevrons-container">
+    <a onClick={() => window.scrollTo} className="chevrons-container cursor-pointer">
       <div className="relative w-full h-full">
         <div className="chevron chevron--one ">
           <img src="/hero/shape-blue.svg" alt="blue shape" />
@@ -12,7 +12,7 @@ const AnimatedChevrons = () => {
           <img src="/hero/shape-blue.svg" alt="blue shape" />
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

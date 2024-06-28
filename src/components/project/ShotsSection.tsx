@@ -33,16 +33,16 @@ export const ShotsSection = () => {
           <button
             type="button"
             onClick={scrollPrev}
-            className={clsx('w-8 h-8 cursor-pointer hidden md:block', {
-              'absolute -left-12 z-[100]': screen,
-              'translate-x-5': !screen,
+            className={clsx(' cursor-pointer hidden md:block', {
+              'absolute w-8 h-8 -left-12 z-[100]': screen,
+              'translate-x-5 w-20 h-8': !screen,
             })}>
             <img onClick={scrollPrev} src="/project/arrow.svg" alt="" className="w-full h-full" />
           </button>
 
           <div
             className={clsx('embla', {
-              'lg:mx-0 md:mx-14 mx-0': !screen,
+              'min-[1300px]:mx-0 md:mx-14 mx-0': !screen,
             })}
             ref={emblaRef}>
             <div className="flex gap-8">
@@ -55,9 +55,9 @@ export const ShotsSection = () => {
           <button
             type="button"
             onClick={scrollNext}
-            className={clsx('w-8 h-8 cursor-pointer hidden md:block', {
-              'absolute -right-12 z-[100]': screen,
-              '-translate-x-5': !screen,
+            className={clsx(' cursor-pointer hidden md:block', {
+              'absolute -right-12 w-8 h-8 z-[100]': screen,
+              '-translate-x-5 w-20 h-8': !screen,
             })}>
             <img src="/project/arrow.svg" alt="" className="rotate-180 " />
           </button>

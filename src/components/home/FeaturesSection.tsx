@@ -24,7 +24,7 @@ const FeaturesSection = () => {
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   return (
-    <section className="pt-[40px]">
+    <section id="features" className="pt-[40px]">
       <Container>
         <div className="hidden lg:flex gap-[32px] md:gap-4 text-center">
           {featuresData.map((block) => (

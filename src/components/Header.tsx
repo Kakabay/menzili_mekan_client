@@ -2,7 +2,7 @@ import Container from './Container';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import LanguageDropdown from './ui/LanguageDropdown';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'usehooks-ts';
@@ -88,8 +88,8 @@ const Header = ({ position }: IProps) => {
                     transition={{
                       duration: 0.3,
                     }}
-                    src={tab ? '/scroll-logo.svg' : '/mob-logo.svg'}
-                    className="w-full h-12"
+                    src={tab ? '/desktop-scroll-logo.svg' : '/scroll-logo.svg'}
+                    className={clsx({ 'h-12': tab })}
                     alt="logo"
                   />
                 ) : (

@@ -5,12 +5,14 @@ import clsx from 'clsx';
 import Container from './Container';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedChevrons from './AnimatedChevrons';
+import { useLocation } from 'react-router-dom';
 
 type IProps = {
   title?: string;
   size: 'small' | 'big';
   video?: string;
   banner?: string;
+  project?: boolean;
 } & (
   | HomeHeroProps
   | SmallProps
@@ -49,9 +51,27 @@ type ProjectHeroProps = {
 type SmallProps = { size: 'small'; title: string };
 
 const HeroSection = (props: IProps) => {
+  const { pathname } = useLocation();
   const activeVideo = useZusHome((state) => state.activeVideo);
   const setActiveVideo = useZusHome((state) => state.setActiveVideo);
 
+  const headerHeight = pathname === '/services' ? 120 : pathname === '/project' ? 125 : 80;
+
+  // const scrollToSection = (id: string) => {
+  //   const element = document.getElementById(id);
+
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
+
+  const scrollToSection = (id: any) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const topOffset = element.offsetTop - headerHeight; // Учтите высоту заголовка
+      window.scrollTo({ top: topOffset, behavior: 'smooth' });
+    }
+  };
   return (
     <>
       <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
@@ -71,7 +91,19 @@ const HeroSection = (props: IProps) => {
         ) : (
           <img src={props.banner} alt="" className="w-full h-full object-cover" />
         )}
-        {props.size === 'big' && <AnimatedChevrons />}
+        {props.size === 'big' && (
+          <div
+            onClick={() => {
+              scrollToSection(
+                props.page === 'home'
+                  ? 'features'
+                  : (props.page === 'services' && 'services') ||
+                      (props.page === 'project' && 'project'),
+              );
+            }}>
+            <AnimatedChevrons />
+          </div>
+        )}
         <div
           className={clsx(
             'overlay z-10 absolute top-0 left-0 w-full h-full bg-black flex justify-center items-center text-white',
@@ -90,7 +122,7 @@ const HeroSection = (props: IProps) => {
               'backdrop-blur-[20px]': props.size === 'big' && props.page === 'services',
             },
           )}>
-          <Container>
+          <Container project={props.project}>
             {props.size === 'big' ? (
               <div className="flex flex-col h-full gap-4 sm:gap-10 items-center pt-[76px] pb-[28px]">
                 {props.page === 'home' ? (
@@ -123,10 +155,10 @@ const HeroSection = (props: IProps) => {
                   </>
                 ) : props.page === 'services' ? (
                   <div className="flex w-full justify-end text-start">
-                    <div className="flex flex-col gap-[16px] max-w-[596px] text-white">
-                      <div className="text-[20px] md:text-[32px] md:leading-[125%] leading-[115%] tracking-[3%]">
-                        {props.title}
-                      </div>
+                    <div className="flex flex-col gap-4 max-w-[596px] text-white">
+                      <div
+                        className="text-[20px] md:text-[32px] md:leading-[80%] leading-[115%] tracking-[3%]"
+                        dangerouslySetInnerHTML={{ __html: props.title }}></div>
                       <div className="h-[1.5px] w-[80px] bg-white"></div>
                       {props.subtitle && (
                         <div
