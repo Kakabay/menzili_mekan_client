@@ -24,7 +24,7 @@ export const BurgerMenu = () => {
       exit={{
         x: '100%',
       }}
-      className="min-h-[100vh] pt-16 w-full h-full fixed top-[96px] overflow-y-auto bottom-0 z-[100] bg-eerieBlack">
+      className="min-h-[100vh] pt-16 w-full h-full fixed top-[88px] overflow-y-auto bottom-0 bg-eerieBlack">
       <div className="flex flex-col items-center gap-4">
         {navData.map((item) => (
           <Link

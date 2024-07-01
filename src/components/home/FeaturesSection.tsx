@@ -10,7 +10,7 @@ const featuresData = [
     text: 'We have more than fifty 2D and 3D short animations. Follow up AppKorpeler YouTube channel',
   },
   {
-    title: 'MOCKUP',
+    title: 'MOCAP',
     text: 'We can provide highly precise motion capture for your games, commercials and animations. We use Xsens MVN Link motion capture system',
   },
   {

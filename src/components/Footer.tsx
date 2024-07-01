@@ -5,20 +5,22 @@ const Footer = () => {
   return (
     <footer className="bg-summerSky py-16 section-mt text-white">
       <Container>
-        <div className="flex flex-col gap-6 ">
+        <div className="flex flex-col gap-0 sm:gap-6 ">
           <div className="flex flex-col sm:flex-row items-start w-full ">
             <div className="cont mx-auto flex flex-col items-center sm:items-start sm:justify-between">
-              <div className="flex flex-col items-center  sm:flex-row text-center justify-center sm:text-left gap-[16px] w-[340px]">
+              <div className="flex flex-col items-center sm:flex-row text-center justify-center sm:text-left gap-[16px] w-[340px]">
                 <img
                   src="/footer/footer-logo.svg"
                   alt=""
                   className="w-[58px] mx-auto sm:mx-0 h-[88px]"
                 />
-                <div className="">
-                  <h3 className="mb-3 text-[24px] font-medium leading-[110%]">
+                <div className="flex flex-col h-[88px] justify-between">
+                  <h3 className="text-[24px] font-medium leading-[100%]">
                     MenzilMekan <br /> Animation
                   </h3>
-                  <h4 className="text-[16px]">TPS Advertising Agency ©2024</h4>
+                  <h4 className="text-[16px] hidden sm:block leading-[60%]">
+                    TPS Advertising Agency ©2024
+                  </h4>
                 </div>
               </div>
               {/* <p className="text-lightBlue hidden sm:block text-[14px] leading-[115%]">
@@ -26,7 +28,7 @@ const Footer = () => {
               </p> */}
             </div>
 
-            <div className="sm:flex flex-row-reverse items-center gap-6 w-full hidden ">
+            <div className="sm:flex flex-row-reverse items-center gap-6 w-full hidden">
               {/* <div className="flex flex-col gap-[24px]">
                 <h4 className="text-[14px] leading-[16px] tracking-[9%] font-[500] uppercase">
                   Navigation
@@ -45,10 +47,10 @@ const Footer = () => {
               </div> */}
               <div className="flex flex-col justify-between items-end gap-[8px]">
                 <div className="">
-                  <h4 className="text-[28px] font-medium mb-2 leading-[23px] tracking-[6%] uppercase w-full">
+                  <h4 className="text-[24px] font-medium mb-2 leading-[23px] tracking-[6%] uppercase w-full">
                     2 000 000
                   </h4>
-                  <h4 className="text-[18px] leading-[16px] tracking-[6%] uppercase w-full">
+                  <h4 className="text-[16px] leading-[16px] tracking-[6%] uppercase w-full">
                     Views on all Platform
                   </h4>
                 </div>
