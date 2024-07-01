@@ -12,7 +12,7 @@ export const navData = [
     link: '/services',
   },
   {
-    title: 'Contact',
+    title: 'Contacts',
     link: '/contact',
   },
 ];

@@ -130,7 +130,7 @@ const Header = ({ position }: IProps) => {
                 'text-white': pathname !== '/contact' && !scrollY,
                 'text-black': pathname !== '/contact' && scrollY,
               })}>
-              contact
+              contacts
             </Link>
           </nav>
           <div className="flex items-center gap-6">

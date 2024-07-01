@@ -1,8 +1,10 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
+import useFavicon from './hooks/useFavicon';
 
-function App() {
+const App: React.FC = () => {
+  // useFavicon();
   return (
     <>
       <div className="min-h-screen overflow-x-hidden main">
@@ -12,6 +14,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;
