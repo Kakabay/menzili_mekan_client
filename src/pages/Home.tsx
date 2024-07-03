@@ -1,8 +1,8 @@
-import HeroSection from '@/components/HeroSection';
-import { PartnersSlider } from '@/components/PartnersSlider';
-import FeaturesSection from '@/components/home/FeaturesSection';
-import GallerySection from '@/components/home/GallerySection';
-import { useEffect } from 'react';
+import HeroSection from "@/components/HeroSection";
+import { PartnersSlider } from "@/components/PartnersSlider";
+import FeaturesSection from "@/components/home/FeaturesSection";
+import GallerySection from "@/components/home/GallerySection";
+import { useEffect } from "react";
 
 const Home = () => {
   useEffect(() => {
@@ -12,11 +12,10 @@ const Home = () => {
   return (
     <>
       <HeroSection
-        // video="sdfsdf"
         banner="/home/main-page-banner.png"
         size="big"
         page="home"
-        title="Cartoon. Mocap. Commercial"
+        title="Cartoon. Mocap. Commercial."
         buttonText="showreel"
       />
       <FeaturesSection />

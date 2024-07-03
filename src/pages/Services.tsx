@@ -1,9 +1,8 @@
-import Container from '@/components/Container';
-import HeroSection from '@/components/HeroSection';
-import Form from '@/components/services/Form';
-import ServicesBlock from '@/components/services/ServicesBlock';
-import SectionTitle from '@/components/ui/SectionTitle';
-import { useEffect } from 'react';
+import Container from "@/components/Container";
+import HeroSection from "@/components/HeroSection";
+import ServicesBlock from "@/components/services/ServicesBlock";
+import SectionTitle from "@/components/ui/SectionTitle";
+import { useEffect } from "react";
 
 const Services = () => {
   useEffect(() => {
@@ -28,8 +27,6 @@ const Services = () => {
           </div>
         </Container>
       </section>
-
-      <Form />
     </>
   );
 };
