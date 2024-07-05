@@ -9,10 +9,7 @@ export function PartnersSlider() {
   const autoplayOptions = { delay: 1500 };
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", containScroll: false },
-    [
-      Autoplay(autoplayOptions),
-      // Fade(),
-    ]
+    [Autoplay(autoplayOptions)]
   );
 
   useEffect(() => {
