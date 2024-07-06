@@ -12,6 +12,8 @@ export function PartnersSlider() {
     [Autoplay(autoplayOptions)]
   );
 
+  const str = "sa";
+
   useEffect(() => {
     if (!emblaApi) return;
 
