@@ -3,15 +3,33 @@ import Autoplay from "embla-carousel-autoplay";
 import Container from "./Container";
 import SectionTitle from "./ui/SectionTitle";
 import { partnersData } from "@/lib/database/Partners.data";
+import { useEffect } from "react";
 
 export function PartnersSlider() {
-  const [emblaRef] = useEmblaCarousel(
+  const autoplayOptions = { delay: 1500 };
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", containScroll: false },
-    [
-      Autoplay(),
-      // Fade(),
-    ]
+    [Autoplay(autoplayOptions)]
   );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const autoplay: any = emblaApi.plugins().autoplay;
+
+    const handleSelect = () => {
+      autoplay.stop();
+      setTimeout(() => {
+        autoplay.play();
+      }, autoplayOptions.delay);
+    };
+
+    emblaApi.on("select", handleSelect);
+
+    return () => {
+      emblaApi.off("select", handleSelect);
+    };
+  }, [emblaApi]);
 
   return (
     <section className="section-mt">
