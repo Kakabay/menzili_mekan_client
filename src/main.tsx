@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <Services />,
       },
       {
-        path: '/contact',
+        path: '/get-in-touch',
         element: <Contact />,
       },
       {
