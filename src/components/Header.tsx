@@ -1,5 +1,5 @@
 import Container from './Container';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import LanguageDropdown from './ui/LanguageDropdown';
 import { useEffect, useState } from 'react';
@@ -17,6 +17,9 @@ const Header = ({ position }: IProps) => {
   const [scrollY, setScrollY] = useState(false);
   const tab = useMediaQuery('(min-width: 980px)');
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const { pathname } = useLocation();
 
   const burgerIsOpen = useZusBurger((state) => state.burgerIsOpen);
@@ -33,6 +36,15 @@ const Header = ({ position }: IProps) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const { pathname, search, hash } = location;
+
+    if (pathname !== '/' && pathname.endsWith('/')) {
+      const newPathname = pathname.slice(0, -1);
+      navigate(`${newPathname}${search}${hash}`, { replace: true });
+    }
+  }, [location, navigate]);
 
   return (
     <motion.header
