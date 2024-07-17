@@ -1,5 +1,5 @@
 import Container from './Container';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import LanguageDropdown from './ui/LanguageDropdown';
 import { useEffect, useState } from 'react';
