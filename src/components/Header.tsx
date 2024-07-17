@@ -135,12 +135,12 @@ const Header = ({ position }: IProps) => {
               services
             </Link>
             <Link
-              to={'/contact'}
+              to={'/get-in-touch'}
               className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
-                'text-orochimaru hover:text-orochimaru': pathname === '/contact' && !scrollY,
-                'text-bauhaus hover:text-bauhaus': pathname === '/contact' && scrollY,
-                'text-white': pathname !== '/contact' && !scrollY,
-                'text-black': pathname !== '/contact' && scrollY,
+                'text-orochimaru hover:text-orochimaru': pathname === '/get-in-touch' && !scrollY,
+                'text-bauhaus hover:text-bauhaus': pathname === '/get-in-touch' && scrollY,
+                'text-white': pathname !== '/get-in-touch' && !scrollY,
+                'text-black': pathname !== '/get-in-touch' && scrollY,
               })}>
               contacts
             </Link>
