@@ -32,7 +32,11 @@ const router = createBrowserRouter([
         element: <Services />,
       },
       {
+<<<<<<< HEAD
         path: "/contact",
+=======
+        path: '/get-in-touch',
+>>>>>>> 34b0af8211cd58a8b5fe2c2c3b7ca948647adfd8
         element: <Contact />,
       },
       {
