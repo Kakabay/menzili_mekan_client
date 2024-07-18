@@ -2,8 +2,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Container from "./Container";
 import SectionTitle from "./ui/SectionTitle";
-import { partnersData } from "@/lib/database/Partners.data";
 import { useEffect } from "react";
+import useGetPartners from "@/react-query/useGetPartners";
 
 export function PartnersSlider() {
   const autoplayOptions = { delay: 1500 };
@@ -31,6 +31,8 @@ export function PartnersSlider() {
     };
   }, [emblaApi]);
 
+  const { data } = useGetPartners();
+
   return (
     <section className="section-mt">
       <Container>
@@ -38,15 +40,17 @@ export function PartnersSlider() {
           <SectionTitle type="small" text="WE WORKED WITH" />
           <div className="embla" ref={emblaRef}>
             <div className="embla__container">
-              {partnersData.map((item, i) => (
-                <div key={i} className="embla__slide p-4">
-                  <img
-                    className="w-full h-auto"
-                    src={item.icon}
-                    alt="pixar logo"
-                  />
-                </div>
-              ))}
+              {data
+                ? data?.map((item, i) => (
+                    <div key={i} className="embla__slide p-4">
+                      <img
+                        className="w-full h-auto"
+                        src={item.image}
+                        alt="pixar logo"
+                      />
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
         </div>

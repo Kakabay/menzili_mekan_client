@@ -3,11 +3,13 @@ import Container from "../Container";
 import SectionTitle from "../ui/SectionTitle";
 import { DotButton, useDotButton } from "../EmblaVarouselDotButton";
 import { Link } from "react-router-dom";
-
+import useGetHomeProjects from "@/react-query/useGetHomeProjects";
 const GallerySection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
+
+  const { data } = useGetHomeProjects();
 
   return (
     <section className="section-mt">
@@ -18,27 +20,33 @@ const GallerySection = () => {
             <div className="group h-[376px] overflow-hidden">
               <Link to={"/"} className="cursor-default">
                 <img
-                  src="/home5.png"
-                  alt="random image"
+                  src={data ? data[0].image : ""}
+                  alt="project"
                   className="group-hover:scale-110 transition duration-300 ease-in-out"
                 />
               </Link>
             </div>
-            <div className=" h-[376px] grid grid-cols-2 gap-[32px]">
-              <div className="group overflow-hidden">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home6.png"
-                    alt="random image"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div>
-              <div className="group overflow-hidden">
+            <div className="h-[376px] grid grid-cols-2 gap-[32px]">
+              {data
+                ? data
+                    .filter((_, i) => i >= 1 && i <= 4)
+                    .map((item) => (
+                      <div className="group overflow-hidden">
+                        <Link to={"/"} className="cursor-default">
+                          <img
+                            src={item.image}
+                            alt="project"
+                            className="group-hover:scale-110 transition duration-300 ease-in-out"
+                          />
+                        </Link>
+                      </div>
+                    ))
+                : null}
+              {/* <div className="group overflow-hidden">
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home1.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -47,7 +55,7 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home3.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -56,17 +64,17 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home4.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
-              </div>
+              </div> */}
             </div>
             <div className="group h-[376px] overflow-hidden">
               <Link to={"/"} className="cursor-default">
                 <img
-                  src="/home2.png"
-                  alt="random image"
+                  src={data ? data[5].image : ""}
+                  alt="project"
                   className="group-hover:scale-110 transition duration-300 ease-in-out"
                 />
               </Link>
@@ -78,11 +86,27 @@ const GallerySection = () => {
             ref={emblaRef}
           >
             <div className="embla-gallery__container">
-              <div className="group pointer-events-auto embla-gallery__slide overflow-hidden relative">
+              {data
+                ? data.map((item, i) => (
+                    <div
+                      key={i}
+                      className="group pointer-events-auto embla-gallery__slide overflow-hidden relative"
+                    >
+                      <Link to={"/"} className="cursor-default">
+                        <img
+                          src={item.image}
+                          alt="project"
+                          className="group-hover:scale-110 transition duration-300 ease-in-out"
+                        />
+                      </Link>
+                    </div>
+                  ))
+                : null}
+              {/* <div className="group pointer-events-auto embla-gallery__slide overflow-hidden relative">
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home5.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -91,7 +115,7 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home6.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -100,7 +124,7 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home1.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -109,7 +133,7 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home3.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -118,7 +142,7 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home4.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
@@ -127,11 +151,11 @@ const GallerySection = () => {
                 <Link to={"/"} className="cursor-default">
                   <img
                     src="/home2.png"
-                    alt="random image"
+                    alt="project"
                     className="group-hover:scale-110 transition duration-300 ease-in-out"
                   />
                 </Link>
-              </div>
+              </div> */}
             </div>
 
             <div className="embla__dots">

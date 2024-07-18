@@ -2,6 +2,7 @@ import Container from "@/components/Container";
 import HeroSection from "@/components/HeroSection";
 import Form from "@/components/services/Form";
 import { contactCardData } from "@/lib/database/Contact.data";
+import useGetPages from "@/react-query/useGetPages";
 import { useEffect } from "react";
 import { v4 } from "uuid";
 
@@ -10,13 +11,15 @@ const Contact = () => {
     window.scroll(0, 0);
   }, []);
 
+  const { data } = useGetPages();
+
   return (
     <div>
       <HeroSection
         size="small"
         page="contact"
-        title="let's talk!"
-        banner="/contact/contacts-banner.png"
+        title={data ? data[3].header : ""}
+        banner={data ? data[3].banner.path : ""}
       />
 
       <section className="md:mt-20 mt-10">
