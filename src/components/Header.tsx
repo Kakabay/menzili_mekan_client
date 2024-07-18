@@ -147,31 +147,20 @@ const Header = ({ position }: IProps) => {
               {data ? data[2].name : ""}
             </Link>
             <Link
-<<<<<<< HEAD
-              to={"/contact"}
+              to={"/get-in-touch"}
               className={clsx(
                 "hidden tab:block hover:text-gray transition-all duration-300",
                 {
                   "text-orochimaru hover:text-orochimaru":
-                    pathname === "/contact" && !scrollY,
+                    pathname === "/get-in-touch" && !scrollY,
                   "text-bauhaus hover:text-bauhaus":
-                    pathname === "/contact" && scrollY,
-                  "text-white": pathname !== "/contact" && !scrollY,
-                  "text-black": pathname !== "/contact" && scrollY,
+                    pathname === "/get-in-touch" && scrollY,
+                  "text-white": pathname !== "/get-in-touch" && !scrollY,
+                  "text-black": pathname !== "/get-in-touch" && scrollY,
                 }
               )}
             >
               {data ? data[3].name : ""}
-=======
-              to={'/get-in-touch'}
-              className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
-                'text-orochimaru hover:text-orochimaru': pathname === '/get-in-touch' && !scrollY,
-                'text-bauhaus hover:text-bauhaus': pathname === '/get-in-touch' && scrollY,
-                'text-white': pathname !== '/get-in-touch' && !scrollY,
-                'text-black': pathname !== '/get-in-touch' && scrollY,
-              })}>
-              contacts
->>>>>>> 34b0af8211cd58a8b5fe2c2c3b7ca948647adfd8
             </Link>
           </nav>
           <div className="flex items-center gap-6">

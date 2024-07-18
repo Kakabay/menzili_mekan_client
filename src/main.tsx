@@ -8,11 +8,7 @@ import Works from "./pages/Works.tsx";
 import Services from "./pages/Services.tsx";
 import Contact from "./pages/Contact.tsx";
 import Project from "./pages/Project.tsx";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
   {
@@ -32,11 +28,7 @@ const router = createBrowserRouter([
         element: <Services />,
       },
       {
-<<<<<<< HEAD
-        path: "/contact",
-=======
-        path: '/get-in-touch',
->>>>>>> 34b0af8211cd58a8b5fe2c2c3b7ca948647adfd8
+        path: "/get-in-touch",
         element: <Contact />,
       },
       {
