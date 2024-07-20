@@ -1,12 +1,13 @@
-import { v4 } from 'uuid';
+import { Part } from "@/services/types/main-services.types";
+import { v4 } from "uuid";
 
 type Props = {
   title: string;
   text: string;
-  features: string[];
+  parts: Part[];
 };
 
-const ServicesCard = ({ title, text, features }: Props) => {
+const ServicesCard = ({ title, text, parts }: Props) => {
   return (
     <div className="flex flex-col gap-[60px]">
       <div className="flex flex-col gap-[16px]">
@@ -19,14 +20,15 @@ const ServicesCard = ({ title, text, features }: Props) => {
         />
       </div>
       <div className="flex flex-col gap-[16px]">
-        {features.map((item) => (
+        {parts.map((item) => (
           <div key={v4()} className="flex gap-[8px]">
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -34,7 +36,7 @@ const ServicesCard = ({ title, text, features }: Props) => {
                 fill="#1A1A1A"
               />
             </svg>
-            <span>{item}</span>
+            <span>{item.item}</span>
           </div>
         ))}
       </div>

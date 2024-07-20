@@ -30,8 +30,8 @@ const GallerySection = () => {
               {data
                 ? data
                     .filter((_, i) => i >= 1 && i <= 4)
-                    .map((item) => (
-                      <div className="group overflow-hidden">
+                    .map((item, i) => (
+                      <div key={i} className="group overflow-hidden">
                         <Link to={"/"} className="cursor-default">
                           <img
                             src={item.image}

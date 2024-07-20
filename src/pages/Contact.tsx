@@ -1,11 +1,11 @@
-import Container from '@/components/Container';
-import HeroSection from '@/components/HeroSection';
-import Form from '@/components/services/Form';
-import { contactCardData } from '@/lib/database/Contact.data';
-import useGetContact from '@/react-query/useGetContact';
-import useGetPages from '@/react-query/useGetPages';
-import { useEffect } from 'react';
-import { v4 } from 'uuid';
+import Container from "@/components/Container";
+import HeroSection from "@/components/HeroSection";
+import Form from "@/components/services/Form";
+import { contactCardData } from "@/lib/database/Contact.data";
+import useGetContact from "@/react-query/useGetContact";
+import useGetPages from "@/react-query/useGetPages";
+import { useEffect } from "react";
+import { v4 } from "uuid";
 
 const Contact = () => {
   useEffect(() => {
@@ -14,31 +14,38 @@ const Contact = () => {
 
   const { data } = useGetPages();
 
-  const { data: contactData } = useGetContact();
-
-  console.log(contactData);
+  // const { data: contactData } = useGetContact();
 
   return (
     <div>
       <HeroSection
         size="small"
         page="contact"
-        title={data ? data[3].header : ''}
-        banner={data ? data[3].banner.path : ''}
+        title={data ? data[3].header : ""}
+        banner={data ? data[3].banner.path : ""}
       />
 
       <section className="md:mt-20 mt-10">
         <Container>
           <div className="flex sm:flex-row flex-col items-center sm:items-start gap-[18px] justify-between">
             {contactCardData.map((item) => (
-              <div key={v4()} className="w-full max-w-[380px] text-center flex flex-col gap-4">
-                <img width={64} height={64} src={item.path} className="w-[64px] h-[64px] mx-auto" />
+              <div
+                key={v4()}
+                className="w-full max-w-[380px] text-center flex flex-col gap-4"
+              >
+                <img
+                  width={64}
+                  height={64}
+                  src={item.path}
+                  className="w-[64px] h-[64px] mx-auto"
+                />
                 <h2 className="text-[24px] text-eerieBlack font-medium leading-[125%]">
                   {item.title}
                 </h2>
                 <div
                   className="text-[16px] leading-[150%] text-bauhaus"
-                  dangerouslySetInnerHTML={{ __html: item.text }}></div>
+                  dangerouslySetInnerHTML={{ __html: item.text }}
+                ></div>
               </div>
             ))}
           </div>

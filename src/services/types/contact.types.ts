@@ -10,6 +10,6 @@ export interface Datum {
   email: string;
   phone: string;
   message: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
 }

@@ -1,33 +1,34 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useHover } from "usehooks-ts";
 import Container from "../Container";
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { v4 } from "uuid";
 import { useOnClickOutside } from "usehooks-ts";
+import menzilService from "@/services/menzil.service";
+import { useForm } from "react-hook-form";
 
-const selectOptions = [
-  {
-    id: 0,
-    value: "10,000 - 50,000 conventional unit",
-  },
-  {
-    id: 1,
-    value: "50,000 - 100,000 conventional unit",
-  },
-  {
-    id: 2,
-    value: "Higher than 250,000 conventional unit",
-  },
-  {
-    id: 3,
-    value: "To be discussed",
-  },
-];
+const MAX_UPLOAD_SIZE = 1024 * 1024 * 15; // 15MB
+
+// const selectOptions = [
+//   {
+//     id: 0,
+//     value: "10,000 - 50,000 conventional unit",
+//   },
+//   {
+//     id: 1,
+//     value: "50,000 - 100,000 conventional unit",
+//   },
+//   {
+//     id: 2,
+//     value: "Higher than 250,000 conventional unit",
+//   },
+//   {
+//     id: 3,
+//     value: "To be discussed",
+//   },
+// ];
 
 const phoneNumberRegex = /^\+\d{11}$/;
 
@@ -46,21 +47,29 @@ const schema = z.object({
   message: z
     .string({ required_error: "Fill in the blank!" })
     .min(5, "Min length 5 symbols"),
-  budget: z
-    .string({ required_error: "Select your budget" })
-    .min(2, "Select your budget"),
+  // budget: z
+  //   .string({ required_error: "Select your budget" })
+  //   .min(2, "Select your budget"),
+  // file: z.any().optional(),
+  file: z
+    .instanceof(File, { message: "Please upload a file." })
+    .refine((file) => file.size <= 15 * 1024 * 1024, {
+      // Проверка размера файла (максимум 5 МБ)
+      message: "File size should be less than 15MB",
+    }),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 const Form = () => {
-  const [selectOpened, setSelectOpened] = useState(false);
-  const [activeSelectId, setActiveSelectId] = useState(0);
+  // const [selectOpened, setSelectOpened] = useState(false);
+  // const [activeSelectId, setActiveSelectId] = useState(0);
   // const [optionSelected, setOptionSelected] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
   const uploadFileRef = useRef<HTMLDivElement>(null);
   const inputFileRef = useRef<HTMLInputElement>(null);
+  console.log(inputFileRef.current?.files);
 
   const isHover = useHover(uploadFileRef);
 
@@ -68,18 +77,18 @@ const Form = () => {
     register,
     handleSubmit,
     // setError,
-    setValue,
+    // setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
 
-  const handleSelectOption = (id: number) => {
-    setSelectOpened(false);
-    setActiveSelectId(id);
-    // setOptionSelected(true);
-    setValue("budget", selectOptions[id].value, { shouldValidate: true });
-  };
+  // const handleSelectOption = (id: number) => {
+  //   setSelectOpened(false);
+  //   setActiveSelectId(id);
+  //   // setOptionSelected(true);
+  //   setValue("budget", selectOptions[id].value, { shouldValidate: true });
+  // };
 
   const handleClickOutsideSelect = () => {
     // setSelectOpened(false);
@@ -87,11 +96,30 @@ const Form = () => {
 
   useOnClickOutside(selectRef, handleClickOutsideSelect);
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
-  };
+  const onSubmit = async (data: FormFields) => {
+    console.log(data, "form payload");
 
-  console.log(inputFileRef.current?.name);
+    const body = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      message: data.message,
+      file:
+        inputFileRef.current && inputFileRef.current.files
+          ? inputFileRef.current?.files[0]
+          : " ",
+    };
+
+    console.log(inputFileRef.current);
+
+    try {
+      menzilService.postContactForm(body);
+      // await axios.post("https://menzilmekan.com.tm/app/api/v1/contact", user);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <section className="section-mt">
@@ -100,13 +128,7 @@ const Form = () => {
           className="flex flex-col gap-10 items-center max-w-[580px] mx-auto"
           onSubmit={handleSubmit(onSubmit)}
         >
-          {/* <SectionTitle
-            type="small"
-            text="START YOUR PROJECT"
-            subtitle="Do you have an idea or project that need our help? We love to hear!"
-          /> */}
           <div className="text-center flex flex-col gap-2">
-            {/* <h2 className="md:text-[24px] leading-[32px]">START YOUR PROJECT</h2> */}
             <h4 className="text-[15px] leading-[130%] md:leading-[150%] md:text-[16px] text-gray"></h4>
           </div>
 
@@ -262,8 +284,10 @@ const Form = () => {
                 className="relative cursor-pointer sm:mt-0 mt-6"
               >
                 <input
+                  {...register("file")}
                   ref={inputFileRef}
                   type="file"
+                  accept=".rar, .pdf"
                   className={clsx(
                     "border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0",
                     { "border-b-[#808080]": isHover }
@@ -292,9 +316,14 @@ const Form = () => {
                   className="absolute top-2 right-0 h-6 w-6"
                 />
               </div>
+              {errors.file && (
+                <span className="text-lust leading-[18.2px] text-[14px]">
+                  {errors.file.message}
+                </span>
+              )}
             </div>
 
-            <AnimatePresence>
+            {/* <AnimatePresence>
               {selectOpened && (
                 <motion.div
                   ref={selectRef}
@@ -331,7 +360,7 @@ const Form = () => {
                   ))}
                 </motion.div>
               )}
-            </AnimatePresence>
+            </AnimatePresence> */}
           </div>
           {/* </div> */}
 

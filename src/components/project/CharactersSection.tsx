@@ -1,15 +1,22 @@
-import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback, useEffect } from 'react';
-import Container from '../Container';
-import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
-import { charactersData } from '@/lib/database/Project.data';
-import clsx from 'clsx';
-import { useMediaQuery } from 'usehooks-ts';
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect } from "react";
+import Container from "../Container";
+import { DotButton, useDotButton } from "../EmblaVarouselDotButton";
+import { charactersData } from "@/lib/database/Project.data";
+import clsx from "clsx";
+import { useMediaQuery } from "usehooks-ts";
+import { useParams } from "react-router-dom";
+import useGetProject from "@/react-query/useGetProject";
 
 export const CharactersSection = () => {
+  const { id } = useParams();
+
+  const { data } = useGetProject(id ? id : "");
+
   const [emblaRef, emblaApi] = useEmblaCarousel();
-  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
-  const screen = useMediaQuery('(min-width: 1300px)');
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
+  const screen = useMediaQuery("(min-width: 1300px)");
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -26,9 +33,13 @@ export const CharactersSection = () => {
   return (
     <section className="section-mt">
       <div className="w-full h-[84px] sm:h-[188px] tab:h-[220px] relative flex justify-center items-center section-mb">
-        <img src="/project/characters.png" alt="bg-image" className="w-full h-full" />
+        <img
+          src={data ? data[0].main_characters_image : ""}
+          alt="bg-image"
+          className="w-full h-full"
+        />
         <div className="uppercase text-center text-white sm:text-[48px] text-[28px] sm:leading-[125%] leading-[130%] absolute top-[50%] translate-y-[-50%] justify-center w-full">
-          main characters
+          {data ? data[0].main_characters_text : ""}
         </div>
       </div>
 
@@ -38,24 +49,24 @@ export const CharactersSection = () => {
             <button
               type="button"
               onClick={scrollPrev}
-              className={clsx('md:inline-block hidden cursor-pointer', {
-                'absolute w-8 h-8 -left-12 z-[100]': screen,
-                'translate-x-5 w-[300px] h-8': !screen,
-              })}>
+              className={clsx("md:inline-block hidden cursor-pointer", {
+                "absolute w-8 h-8 -left-12 z-[100]": screen,
+                "translate-x-5 w-[300px] h-8": !screen,
+              })}
+            >
               <img src="/project/arrow.svg" alt="" className="" />
             </button>
 
-            {/* <button
-              type="button"
-              onClick={scrollPrev}
-              className="min-[1300px]:hidden block w-8 h-8 translate-x-5">
-              <img src="/project/arrow.svg" alt="" className="" />
-            </button> */}
-
-            <div className="embla mx-0 md:mx-10 min-[1300px]:mx-0" ref={emblaRef}>
+            <div
+              className="embla mx-0 md:mx-10 min-[1300px]:mx-0"
+              ref={emblaRef}
+            >
               <div className="flex items-center sm:gap-14 gap-6">
                 {charactersData.map((item) => (
-                  <div key={item.id} className="flex-[0_0_100%] justify-center items-center">
+                  <div
+                    key={item.id}
+                    className="flex-[0_0_100%] justify-center items-center"
+                  >
                     <div className="hidden md:flex gap-8 justify-center">
                       {item.images.map((path, i) => (
                         <div key={i} className="h-[376px] w-full">
@@ -83,10 +94,11 @@ export const CharactersSection = () => {
             <button
               type="button"
               onClick={scrollNext}
-              className={clsx('md:block hidden cursor-pointer', {
-                'absolute w-8 h-8 -right-12 z-[100]': screen,
-                'block -translate-x-5 w-[300px] h-8': !screen,
-              })}>
+              className={clsx("md:block hidden cursor-pointer", {
+                "absolute w-8 h-8 -right-12 z-[100]": screen,
+                "block -translate-x-5 w-[300px] h-8": !screen,
+              })}
+            >
               <img src="/project/arrow.svg" alt="" className="rotate-180 " />
             </button>
           </div>
@@ -96,8 +108,8 @@ export const CharactersSection = () => {
             <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : '',
+              className={"embla__dot".concat(
+                index === selectedIndex ? " embla__dot--selected" : ""
               )}
             />
           ))}
