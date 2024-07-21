@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHover } from "usehooks-ts";
 import Container from "../Container";
 import clsx from "clsx";
@@ -8,8 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useOnClickOutside } from "usehooks-ts";
 import menzilService from "@/services/menzil.service";
 import { useForm } from "react-hook-form";
-
-const MAX_UPLOAD_SIZE = 1024 * 1024 * 15; // 15MB
 
 // const selectOptions = [
 //   {
@@ -50,18 +48,14 @@ const schema = z.object({
   // budget: z
   //   .string({ required_error: "Select your budget" })
   //   .min(2, "Select your budget"),
-  // file: z.any().optional(),
-  file: z
-    .instanceof(File, { message: "Please upload a file." })
-    .refine((file) => file.size <= 15 * 1024 * 1024, {
-      // Проверка размера файла (максимум 5 МБ)
-      message: "File size should be less than 15MB",
-    }),
+  file: z.instanceof(Document),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 const Form = () => {
+  const [firstRender, setFirstRender] = useState(false);
+
   // const [selectOpened, setSelectOpened] = useState(false);
   // const [activeSelectId, setActiveSelectId] = useState(0);
   // const [optionSelected, setOptionSelected] = useState(false);
@@ -69,7 +63,6 @@ const Form = () => {
 
   const uploadFileRef = useRef<HTMLDivElement>(null);
   const inputFileRef = useRef<HTMLInputElement>(null);
-  console.log(inputFileRef.current?.files);
 
   const isHover = useHover(uploadFileRef);
 
@@ -109,8 +102,6 @@ const Form = () => {
           ? inputFileRef.current?.files[0]
           : " ",
     };
-
-    console.log(inputFileRef.current);
 
     try {
       menzilService.postContactForm(body);
@@ -289,8 +280,13 @@ const Form = () => {
                   type="file"
                   accept=".rar, .pdf"
                   className={clsx(
-                    "border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0",
-                    { "border-b-[#808080]": isHover }
+                    "border-b-[1px] relative z-[100] w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0",
+                    {
+                      "border-b-[#808080]": isHover,
+                      "border-lust":
+                        firstRender && !inputFileRef.current?.value,
+                      "border-orochimaru": inputFileRef.current,
+                    }
                   )}
                 />
                 <div
@@ -316,11 +312,11 @@ const Form = () => {
                   className="absolute top-2 right-0 h-6 w-6"
                 />
               </div>
-              {errors.file && (
-                <span className="text-lust leading-[18.2px] text-[14px]">
-                  {errors.file.message}
-                </span>
-              )}
+              <span className="text-lust leading-[18.2px] text-[14px]">
+                {firstRender &&
+                  !inputFileRef.current?.value &&
+                  "Please upload file"}
+              </span>
             </div>
 
             {/* <AnimatePresence>
@@ -399,7 +395,12 @@ const Form = () => {
                 To send an application you need to fill in all fields
               </span>
             </div>
-            <button className="font-bold" type="submit" disabled={isSubmitting}>
+            <button
+              onClick={() => setFirstRender(true)}
+              className="font-bold"
+              type="submit"
+              disabled={isSubmitting}
+            >
               <Button type="primary" text="send request" />
             </button>
           </div>
