@@ -1,15 +1,13 @@
-import { useRef } from "react";
-import { useHover } from "usehooks-ts";
-import Container from "../Container";
-import clsx from "clsx";
-import Button from "../ui/Button";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useOnClickOutside } from "usehooks-ts";
-import menzilService from "@/services/menzil.service";
-import { useForm } from "react-hook-form";
-
-const MAX_UPLOAD_SIZE = 1024 * 1024 * 15; // 15MB
+import { useEffect, useRef, useState } from 'react';
+import { useHover } from 'usehooks-ts';
+import Container from '../Container';
+import clsx from 'clsx';
+import Button from '../ui/Button';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useOnClickOutside } from 'usehooks-ts';
+import menzilService from '@/services/menzil.service';
+import { useForm } from 'react-hook-form';
 
 // const selectOptions = [
 //   {
@@ -33,35 +31,25 @@ const MAX_UPLOAD_SIZE = 1024 * 1024 * 15; // 15MB
 const phoneNumberRegex = /^\+\d{11}$/;
 
 const schema = z.object({
-  name: z
-    .string({ required_error: "Fill in the blank!" })
-    .min(2, "Min length 2 symbols"),
-  email: z
-    .string({ required_error: "Fill in the blank!" })
-    .email("Invalid e-mail address"),
+  name: z.string({ required_error: 'Fill in the blank!' }).min(2, 'Min length 2 symbols'),
+  email: z.string({ required_error: 'Fill in the blank!' }).email('Invalid e-mail address'),
   phone: z
-    .string({ message: "Fill in the blank!" })
+    .string({ message: 'Fill in the blank!' })
     .refine((value) => phoneNumberRegex.test(value.trim()), {
-      message: "Fill in the following format +993 6X XXXXXX",
+      message: 'Fill in the following format +993 6X XXXXXX',
     }),
-  message: z
-    .string({ required_error: "Fill in the blank!" })
-    .min(5, "Min length 5 symbols"),
+  message: z.string({ required_error: 'Fill in the blank!' }).min(5, 'Min length 5 symbols'),
   // budget: z
   //   .string({ required_error: "Select your budget" })
   //   .min(2, "Select your budget"),
   // file: z.any().optional(),
-  file: z
-    .instanceof(File, { message: "Please upload a file." })
-    .refine((file) => file.size <= 15 * 1024 * 1024, {
-      // Проверка размера файла (максимум 5 МБ)
-      message: "File size should be less than 15MB",
-    }),
+  file: z.instanceof(FileList).refine((files) => files.length > 0, 'File is required'),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 const Form = () => {
+  const [render, setRender] = useState(false);
   // const [selectOpened, setSelectOpened] = useState(false);
   // const [activeSelectId, setActiveSelectId] = useState(0);
   // const [optionSelected, setOptionSelected] = useState(false);
@@ -69,7 +57,6 @@ const Form = () => {
 
   const uploadFileRef = useRef<HTMLDivElement>(null);
   const inputFileRef = useRef<HTMLInputElement>(null);
-  console.log(inputFileRef.current?.files);
 
   const isHover = useHover(uploadFileRef);
 
@@ -77,7 +64,7 @@ const Form = () => {
     register,
     handleSubmit,
     // setError,
-    // setValue,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
@@ -94,23 +81,30 @@ const Form = () => {
     // setSelectOpened(false);
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      setValue('file', files);
+    }
+  };
+
   useOnClickOutside(selectRef, handleClickOutsideSelect);
 
-  const onSubmit = async (data: FormFields) => {
-    console.log(data, "form payload");
+  useEffect(() => {
+    register('file', {
+      validate: (files) => files.length > 0,
+    });
+  }, [register]);
 
+  const onSubmit = async (data: FormFields) => {
     const body = {
       name: data.name,
       email: data.email,
       phone: data.phone,
       message: data.message,
       file:
-        inputFileRef.current && inputFileRef.current.files
-          ? inputFileRef.current?.files[0]
-          : " ",
+        inputFileRef.current && inputFileRef.current.files ? inputFileRef.current?.files[0] : ' ',
     };
-
-    console.log(inputFileRef.current);
 
     try {
       menzilService.postContactForm(body);
@@ -118,6 +112,8 @@ const Form = () => {
       console.log(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setRender(false);
     }
   };
 
@@ -126,8 +122,7 @@ const Form = () => {
       <Container>
         <form
           className="flex flex-col gap-10 items-center max-w-[580px] mx-auto"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center flex flex-col gap-2">
             <h4 className="text-[15px] leading-[130%] md:leading-[150%] md:text-[16px] text-gray"></h4>
           </div>
@@ -135,16 +130,16 @@ const Form = () => {
           <div className="flex flex-col w-full gap-4 sm:gap-6">
             <div className="flex flex-col gap-[8px]">
               <input
-                {...register("name")}
+                {...register('name')}
                 type="text"
                 className={clsx(
-                  "block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200",
+                  'block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
                   {
-                    "border-orochimaru": !errors.name,
+                    'border-orochimaru': !errors.name,
                   },
                   {
-                    "border-lust": errors.name,
-                  }
+                    'border-lust': errors.name,
+                  },
                 )}
                 placeholder="Your full name"
               />
@@ -158,16 +153,16 @@ const Form = () => {
             <div className="flex sm:flex-row flex-col gap-[16px]">
               <div className="flex w-full flex-col gap-[8px]">
                 <input
-                  {...register("email")}
+                  {...register('email')}
                   type="text"
                   className={clsx(
-                    "block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200",
+                    'block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
                     {
-                      "border-orochimaru": !errors.email,
+                      'border-orochimaru': !errors.email,
                     },
                     {
-                      "border-lust": errors.email,
-                    }
+                      'border-lust': errors.email,
+                    },
                   )}
                   placeholder="Your email"
                 />
@@ -179,16 +174,16 @@ const Form = () => {
               </div>
               <div className="flex w-full flex-col gap-[8px]">
                 <input
-                  {...register("phone")}
+                  {...register('phone')}
                   type="text"
                   className={clsx(
-                    "block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200",
+                    'block placeholder-uniformGrey hover:placeholder-gray w-full border-b  outline-none text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
                     {
-                      "border-orochimaru": !errors.phone,
+                      'border-orochimaru': !errors.phone,
                     },
                     {
-                      "border-lust": errors.phone,
-                    }
+                      'border-lust': errors.phone,
+                    },
                   )}
                   placeholder="Your phone"
                 />
@@ -203,24 +198,23 @@ const Form = () => {
             <div className="text-area flex flex-col w-full gap-[100px]">
               <label
                 htmlFor="message"
-                className="text-uniformGrey hover:text-gray focus:text-eerieBlack"
-              >
-                Describe your request. Details like reference links or target
-                deadline would definitely help.
+                className="text-uniformGrey hover:text-gray focus:text-eerieBlack">
+                Describe your request. Details like reference links or target deadline would
+                definitely help.
               </label>
               <div className="flex w-full flex-col gap-[8px]">
                 <input
-                  {...register("message")}
+                  {...register('message')}
                   type="text"
                   id="message"
                   className={clsx(
-                    "block w-full border-b  outline-none  text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200",
+                    'block w-full border-b  outline-none  text-[16px] leading-[24px] text-eerieBlack pb-[8px] hover:text-gray hover:border-gray focus:border-eerieBlack transition-all duration-200',
                     {
-                      "border-orochimaru": !errors.message,
+                      'border-orochimaru': !errors.message,
                     },
                     {
-                      "border-lust": errors.message,
-                    }
+                      'border-lust': errors.message,
+                    },
                   )}
                 />
                 {errors.message && (
@@ -279,34 +273,31 @@ const Form = () => {
                     {errors.budget.message}
                   </span>
                 )} */}
-              <div
-                ref={uploadFileRef}
-                className="relative cursor-pointer sm:mt-0 mt-6"
-              >
+              <div ref={uploadFileRef} className="relative cursor-pointer sm:mt-0 mt-6">
                 <input
-                  {...register("file")}
+                  {...register('file')}
                   ref={inputFileRef}
                   type="file"
+                  onChange={handleFileChange}
                   accept=".rar, .pdf"
                   className={clsx(
-                    "border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0",
-                    { "border-b-[#808080]": isHover }
+                    'border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0',
+                    {
+                      'border-b-[#808080]': isHover,
+                      '!border-lust': render && !inputFileRef.current?.files?.[0],
+                    },
                   )}
                 />
                 <div
-                  className={clsx(
-                    "absolute bottom-2 transition-all left-0 text-uniformGrey",
-                    {
-                      "text-[#808080]": isHover,
-                    }
-                  )}
-                >
+                  className={clsx('absolute bottom-2 transition-all left-0 text-uniformGrey', {
+                    'text-[#808080]': isHover,
+                  })}>
                   {inputFileRef.current?.value ? (
                     inputFileRef.current?.value
                   ) : (
                     <div>
-                      Please upload your file <br className="sm:hidden" /> (rar
-                      or pdf, less than 15 MB)
+                      Please upload your file <br className="sm:hidden" /> (rar or pdf, less than 15
+                      MB)
                     </div>
                   )}
                 </div>
@@ -316,10 +307,11 @@ const Form = () => {
                   className="absolute top-2 right-0 h-6 w-6"
                 />
               </div>
-              {errors.file && (
-                <span className="text-lust leading-[18.2px] text-[14px]">
-                  {errors.file.message}
-                </span>
+              {/* {render && !inputFileRef.current?.files?.[0] && (
+                <span className="text-lust leading-[18.2px] text-[14px]">File is not upload</span>
+              )} */}
+              {render && !inputFileRef.current?.files?.[0] && (
+                <span className="text-lust leading-[18.2px] text-[14px]">File is required</span>
               )}
             </div>
 
@@ -371,8 +363,7 @@ const Form = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_37_3180)">
                   <path
                     fillRule="evenodd"
@@ -380,13 +371,7 @@ const Form = () => {
                     d="M12 5C11.4477 5 11 5.44772 11 6V13C11 13.5523 11.4477 14 12 14C12.5523 14 13 13.5523 13 13V6C13 5.44772 12.5523 5 12 5ZM12 19C12.5523 19 13 18.5523 13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19Z"
                     fill="#1A1A1A"
                   />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="11.25"
-                    stroke="#1A1A1A"
-                    stroke-width="1.5"
-                  />
+                  <circle cx="12" cy="12" r="11.25" stroke="#1A1A1A" stroke-width="1.5" />
                 </g>
                 <defs>
                   <clipPath id="clip0_37_3180">
@@ -399,7 +384,11 @@ const Form = () => {
                 To send an application you need to fill in all fields
               </span>
             </div>
-            <button className="font-bold" type="submit" disabled={isSubmitting}>
+            <button
+              onClick={() => setRender(true)}
+              className="font-bold"
+              type="submit"
+              disabled={isSubmitting}>
               <Button type="primary" text="send request" />
             </button>
           </div>

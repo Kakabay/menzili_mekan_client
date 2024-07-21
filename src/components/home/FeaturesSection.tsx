@@ -1,29 +1,13 @@
-import Container from "../Container";
-import FeaturesBlock from "../FeaturesBlock";
-import { v4 } from "uuid";
-import useEmblaCarousel from "embla-carousel-react";
-import { DotButton, useDotButton } from "../EmblaVarouselDotButton";
-import useGetHomeServices from "@/react-query/useGetHomeServices";
-
-const featuresData = [
-  {
-    title: "CARTOON",
-    text: "We have created over fifty 2D and 3D short animations. Follow the AppKorpeler YouTube channel to view our work.",
-  },
-  {
-    title: "MOCAP",
-    text: "We provide highly precise motion capture for games, commercials, and animations using the Xsens MVN Link motion capture system.",
-  },
-  {
-    title: "COMMERCIAL",
-    text: "We have developed numerous characters, including Robo, Ynamly, and Bulutjyk, who effectively represent their companies in various commercials.",
-  },
-];
+import Container from '../Container';
+import FeaturesBlock from '../FeaturesBlock';
+import { v4 } from 'uuid';
+import useEmblaCarousel from 'embla-carousel-react';
+import { DotButton, useDotButton } from '../EmblaVarouselDotButton';
+import useGetHomeServices from '@/react-query/useGetHomeServices';
 
 const FeaturesSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel();
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi);
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   const { data } = useGetHomeServices();
 
@@ -80,8 +64,8 @@ const FeaturesSection = () => {
                 <DotButton
                   key={index}
                   onClick={() => onDotButtonClick(index)}
-                  className={"embla__dot".concat(
-                    index === selectedIndex ? " embla__dot--selected" : ""
+                  className={'embla__dot'.concat(
+                    index === selectedIndex ? ' embla__dot--selected' : '',
                   )}
                 />
               </div>
