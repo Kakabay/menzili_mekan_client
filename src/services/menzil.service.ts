@@ -55,7 +55,11 @@ class MenzilService {
     phone: string;
     file: string | File | undefined;
   }) => {
-    return await axios.post(`${this.URL}/contact`, body);
+    return await axios.post(`${this.URL}/contact`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   };
 }
 

@@ -65,6 +65,7 @@ const Form = () => {
     handleSubmit,
     // setError,
     setValue,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
@@ -102,14 +103,16 @@ const Form = () => {
       email: data.email,
       phone: data.phone,
       message: data.message,
-      file:
-        inputFileRef.current && inputFileRef.current.files ? inputFileRef.current?.files[0] : ' ',
+      file: inputFileRef.current?.files?.[0],
     };
+
+    console.log(inputFileRef.current?.files?.[0]);
 
     try {
       menzilService.postContactForm(body);
       // await axios.post("https://menzilmekan.com.tm/app/api/v1/contact", user);
       console.log(data);
+      reset();
     } catch (error) {
       console.error(error);
     } finally {
@@ -279,7 +282,7 @@ const Form = () => {
                   ref={inputFileRef}
                   type="file"
                   onChange={handleFileChange}
-                  accept=".rar, .pdf"
+                  accept=".rar, .pdf, .png, .jpeg, .jpg"
                   className={clsx(
                     'border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0',
                     {
