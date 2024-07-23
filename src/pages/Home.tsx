@@ -15,8 +15,8 @@ const Home = () => {
   return (
     <>
       <HeroSection
-        banner={data ? data[0].banner_video_link : ""}
-        poster={data ? data[0].banner_video_image : ""}
+        // banner={data ? data[0].banner_video_link : ""}
+        poster={data ? data[0].banner.path : ""}
         size="big"
         page="home"
         title={data ? data[0].header : ""}
