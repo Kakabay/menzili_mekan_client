@@ -48,14 +48,16 @@ const schema = z.object({
   // budget: z
   //   .string({ required_error: "Select your budget" })
   //   .min(2, "Select your budget"),
-  file: z.instanceof(Document),
+  // file: z.any().optional(),
+  file: z
+    .instanceof(FileList)
+    .refine((files) => files.length > 0, "File is required"),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 const Form = () => {
-  const [firstRender, setFirstRender] = useState(false);
-
+  const [render, setRender] = useState(false);
   // const [selectOpened, setSelectOpened] = useState(false);
   // const [activeSelectId, setActiveSelectId] = useState(0);
   // const [optionSelected, setOptionSelected] = useState(false);
@@ -70,7 +72,8 @@ const Form = () => {
     register,
     handleSubmit,
     // setError,
-    // setValue,
+    setValue,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
@@ -87,28 +90,41 @@ const Form = () => {
     // setSelectOpened(false);
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      setValue("file", files);
+    }
+  };
+
   useOnClickOutside(selectRef, handleClickOutsideSelect);
 
-  const onSubmit = async (data: FormFields) => {
-    console.log(data, "form payload");
+  useEffect(() => {
+    register("file", {
+      validate: (files) => files.length > 0,
+    });
+  }, [register]);
 
+  const onSubmit = async (data: FormFields) => {
     const body = {
       name: data.name,
       email: data.email,
       phone: data.phone,
       message: data.message,
-      file:
-        inputFileRef.current && inputFileRef.current.files
-          ? inputFileRef.current?.files[0]
-          : " ",
+      file: inputFileRef.current?.files?.[0],
     };
+
+    console.log(inputFileRef.current?.files?.[0]);
 
     try {
       menzilService.postContactForm(body);
       // await axios.post("https://menzilmekan.com.tm/app/api/v1/contact", user);
       console.log(data);
+      reset();
     } catch (error) {
       console.error(error);
+    } finally {
+      setRender(false);
     }
   };
 
@@ -278,14 +294,14 @@ const Form = () => {
                   {...register("file")}
                   ref={inputFileRef}
                   type="file"
-                  accept=".rar, .pdf"
+                  onChange={handleFileChange}
+                  accept=".rar, .pdf, .png, .jpeg, .jpg"
                   className={clsx(
-                    "border-b-[1px] relative z-[100] w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0",
+                    "border-b-[1px] relative z-[100] border-b-orochimaru w-full py-2 file:hidden cursor-pointer text-uniformGrey transition-all duration-200 text-opacity-0 hover:text-opacity-0",
                     {
                       "border-b-[#808080]": isHover,
-                      "border-lust":
-                        firstRender && !inputFileRef.current?.value,
-                      "border-orochimaru": inputFileRef.current,
+                      "!border-lust":
+                        render && !inputFileRef.current?.files?.[0],
                     }
                   )}
                 />
@@ -312,11 +328,14 @@ const Form = () => {
                   className="absolute top-2 right-0 h-6 w-6"
                 />
               </div>
-              <span className="text-lust leading-[18.2px] text-[14px]">
-                {firstRender &&
-                  !inputFileRef.current?.value &&
-                  "Please upload file"}
-              </span>
+              {/* {render && !inputFileRef.current?.files?.[0] && (
+                <span className="text-lust leading-[18.2px] text-[14px]">File is not upload</span>
+              )} */}
+              {render && !inputFileRef.current?.files?.[0] && (
+                <span className="text-lust leading-[18.2px] text-[14px]">
+                  File is required
+                </span>
+              )}
             </div>
 
             {/* <AnimatePresence>
@@ -396,7 +415,7 @@ const Form = () => {
               </span>
             </div>
             <button
-              onClick={() => setFirstRender(true)}
+              onClick={() => setRender(true)}
               className="font-bold"
               type="submit"
               disabled={isSubmitting}
