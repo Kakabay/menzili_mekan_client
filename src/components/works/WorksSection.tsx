@@ -16,9 +16,8 @@ const WorksSection = () => {
             ? data.map((item, i) => (
                 <Link
                   key={i}
-                  to={''}
-                  //  to={`project/${item.id}`}
-                >
+                  // to={''}
+                  to={`project/${item.id}`}>
                   <CartoonCard {...item} key={i} />
                 </Link>
               ))

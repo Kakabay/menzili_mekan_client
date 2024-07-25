@@ -21,12 +21,31 @@ export interface Datum {
   information: string;
   main_characters_text: string;
   main_characters_image: string;
-  list_characters: null;
+  list_characters: ListCharacter[];
   shots_text: string;
   shots_image: string;
-  list_shots: null;
+  list_shots: ListShot[];
   posters_text: string;
   posters_image: string;
-  list_posters: null;
+  list_posters: ListPoster[];
   trailer: null;
+}
+
+export interface ListCharacter {
+  character_images: CharacterImage[];
+  character_header: string;
+  character_text: string;
+}
+
+export interface CharacterImage {
+  image: string;
+}
+
+export interface ListPoster {
+  image: string;
+  image_type: string;
+}
+
+export interface ListShot {
+  shot_image: string;
 }

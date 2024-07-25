@@ -8,6 +8,8 @@ import AnimatedChevrons from './AnimatedChevrons';
 import { useLocation } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { YoutubeWindow } from './home/YoutubeWindow';
 
 type IProps = {
   title?: string;
@@ -56,7 +58,7 @@ type SmallProps = { size: 'small'; title: string };
 
 const HeroSection = (props: IProps) => {
   const { pathname } = useLocation();
-  // const activeVideo = useZusHome((state) => state.activeVideo);
+  const activeVideo = useZusHome((state) => state.activeVideo);
   const setActiveVideo = useZusHome((state) => state.setActiveVideo);
   const [videoReady, setIsVideoReady] = useState(false);
 
@@ -79,7 +81,7 @@ const HeroSection = (props: IProps) => {
   };
   return (
     <>
-      {/* <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence> */}
+      <AnimatePresence>{activeVideo && <YoutubeWindow />}</AnimatePresence>
       <section
         className={clsx('relative overflow-hidden text-center', {
           'md:h-screen sm:h-[456px] h-[380px]': props.size === 'big',
@@ -96,7 +98,7 @@ const HeroSection = (props: IProps) => {
         ) : props.page.includes('/project') ? null : (
           <div className="relative h-full">
             <img
-              src={props.poster}
+              src={props.page === 'project' ? props.banner : props.poster}
               alt="video-thumbnail"
               className={clsx(' w-full h-full absolute top-0 left-0', {
                 hidden: videoReady,
