@@ -8,8 +8,8 @@ export interface Datum {
   id: number;
   name: string;
   list_image: string;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
   banner_image: string;
   logo: string;
   information_number_1: string;

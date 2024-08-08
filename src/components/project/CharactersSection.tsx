@@ -32,7 +32,7 @@ export const CharactersSection = () => {
     <section className="section-mt">
       <div className="w-full h-[84px] sm:h-[188px] tab:h-[220px] relative flex justify-center items-center section-mb">
         <img
-          src={data ? data[0].main_characters_image : ''}
+          src={data && data[0] ? data[0].main_characters_image : ''}
           alt="bg-image"
           className="w-full h-full"
         />
@@ -56,7 +56,7 @@ export const CharactersSection = () => {
 
             <div className="embla mx-0 md:mx-10 min-[1300px]:mx-0" ref={emblaRef}>
               <div className="flex items-center sm:gap-14 gap-6">
-                {data
+                {data && data[0]
                   ? data[0].list_characters.map((item, i) => (
                       <div key={i} className="flex-[0_0_100%] justify-center items-center">
                         <div className="hidden md:flex gap-8 justify-center">

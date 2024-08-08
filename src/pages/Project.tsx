@@ -19,8 +19,8 @@ const Project = () => {
         project
         size="big"
         page="project"
-        banner={data ? data[0].banner_image : ''}
-        icon={data ? data[0].logo : ''}
+        banner={data && data[0] ? data[0].banner_image : ''}
+        icon={data && data[0] ? data[0].logo : ''}
         btnText="Watch trailer"
       />
 
