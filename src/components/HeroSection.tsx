@@ -99,7 +99,6 @@ const HeroSection = (props: IProps) => {
           <div className="relative h-full">
             <img
               src={props.page === 'project' ? props.banner : props.poster}
-              alt="video-thumbnail"
               className={clsx(' w-full h-full absolute top-0 left-0', {
                 hidden: videoReady,
                 block: !videoReady,

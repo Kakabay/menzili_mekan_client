@@ -59,7 +59,8 @@ const Header = ({ position }: IProps) => {
               to={'/'}
               className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
                 'text-orochimaru hover:text-orochimaru': pathname === '/' && !scrollY,
-                'text-bauhaus hover:text-bauhaus': pathname === '/' && scrollY,
+                'text-bauhaus hover:text-bauhaus cursor-default pointer-events-none':
+                  pathname === '/' && scrollY,
                 'text-white': pathname !== '/' && !scrollY,
                 'text-black': pathname !== '/' && scrollY,
               })}>
@@ -69,7 +70,8 @@ const Header = ({ position }: IProps) => {
               to={'/works'}
               className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
                 'text-orochimaru hover:text-orochimaru': pathname === '/works' && !scrollY,
-                'text-bauhaus hover:text-bauhaus': pathname === '/works' && scrollY,
+                'text-bauhaus hover:text-bauhaus cursor-default pointer-events-none':
+                  pathname === '/works' && scrollY,
                 'text-white': pathname !== '/works' && !scrollY,
                 'text-black': pathname !== '/works' && scrollY,
               })}>
@@ -119,7 +121,8 @@ const Header = ({ position }: IProps) => {
               to={'/services'}
               className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
                 'text-orochimaru hover:text-orochimaru': pathname === '/services' && !scrollY,
-                'text-bauhaus hover:text-bauhaus': pathname === '/services' && scrollY,
+                'text-bauhaus hover:text-bauhaus cursor-default pointer-events-none':
+                  pathname === '/services' && scrollY,
                 'text-white': pathname !== '/services' && !scrollY,
                 'text-black ': pathname !== '/services' && scrollY,
               })}>
@@ -129,7 +132,8 @@ const Header = ({ position }: IProps) => {
               to={'/get-in-touch'}
               className={clsx('hidden tab:block hover:text-gray transition-all duration-300', {
                 'text-orochimaru hover:text-orochimaru': pathname === '/get-in-touch' && !scrollY,
-                'text-bauhaus hover:text-bauhaus': pathname === '/get-in-touch' && scrollY,
+                'text-bauhaus hover:text-bauhaus cursor-default pointer-events-none':
+                  pathname === '/get-in-touch' && scrollY,
                 'text-white': pathname !== '/get-in-touch' && !scrollY,
                 'text-black': pathname !== '/get-in-touch' && scrollY,
               })}>
