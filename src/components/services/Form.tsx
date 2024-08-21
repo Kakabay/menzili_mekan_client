@@ -8,7 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useOnClickOutside } from 'usehooks-ts';
 import menzilService from '@/services/menzil.service';
 import { useForm } from 'react-hook-form';
-import { TailSpin } from 'react-loader-spinner';
 
 // const selectOptions = [
 //   {
@@ -70,7 +69,7 @@ const Form = () => {
     setValue,
     reset,
 
-    formState: { errors, isSubmitting, isSubmitSuccessful, isLoading },
+    formState: { errors, isSubmitSuccessful, isLoading },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
