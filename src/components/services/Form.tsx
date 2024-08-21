@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useHover } from 'usehooks-ts';
 import Container from '../Container';
 import clsx from 'clsx';
 import Button from '../ui/Button';
-import { optional, z } from 'zod';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useOnClickOutside } from 'usehooks-ts';
 import menzilService from '@/services/menzil.service';
@@ -52,7 +52,6 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 const Form = () => {
-  const [render, setRender] = useState(false);
   // const [selectOpened, setSelectOpened] = useState(false);
   // const [activeSelectId, setActiveSelectId] = useState(0);
   // const [optionSelected, setOptionSelected] = useState(false);
@@ -112,8 +111,6 @@ const Form = () => {
       reset();
     } catch (error) {
       console.error(error);
-    } finally {
-      setRender(false);
     }
   };
 
@@ -377,11 +374,7 @@ const Form = () => {
                 To send an application you need to fill in all fields
               </span>
             </div>
-            <button
-              onClick={() => setRender(true)}
-              className="font-bold"
-              type="submit"
-              disabled={isSubmitting}>
+            <button className="font-bold" type="submit" disabled={isSubmitting}>
               <Button type="primary" text="send request" />
             </button>
           </div>
