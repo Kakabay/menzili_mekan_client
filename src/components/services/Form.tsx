@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useOnClickOutside } from 'usehooks-ts';
 import menzilService from '@/services/menzil.service';
 import { useForm } from 'react-hook-form';
+import { TailSpin } from 'react-loader-spinner';
 
 // const selectOptions = [
 //   {
@@ -68,7 +69,8 @@ const Form = () => {
     // setError,
     setValue,
     reset,
-    formState: { errors, isSubmitting },
+
+    formState: { errors, isSubmitting, isSubmitSuccessful, isLoading },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
@@ -348,7 +350,7 @@ const Form = () => {
 
           <div className="flex flex-col gap-[24px] items-center">
             <div className="flex sm:flex-row flex-col items-center gap-[8px]">
-              <svg
+              {/* <svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -369,13 +371,21 @@ const Form = () => {
                   </clipPath>
                 </defs>
               </svg>
-
-              <span className="text-[16px] leading-[130%] text-eerieBlack text-center">
-                To send an application you need to fill in all fields
+ */}
+              <span
+                className={clsx('text-[16px] leading-[130%] text-eerieBlack text-center', {
+                  'text-green-600': isSubmitSuccessful,
+                })}>
+                {isSubmitSuccessful
+                  ? 'Application sent successfully!'
+                  : 'To send an application you need to fill in all fields'}
               </span>
             </div>
-            <button className="font-bold" type="submit" disabled={isSubmitting}>
-              <Button type="primary" text="send request" />
+            <button
+              className="font-bold relative transition-all"
+              type="submit"
+              disabled={isLoading}>
+              <Button type="primary" text={isLoading ? 'Loading...' : 'send request'} />
             </button>
           </div>
         </form>

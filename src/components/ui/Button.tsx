@@ -1,15 +1,17 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 type IProps = {
   text: string;
   type: 'primary' | 'secondary';
+  children?: ReactNode;
 };
 
-const Button = ({ text, type }: IProps) => {
+const Button = ({ text, type, children }: IProps) => {
   return (
     <button
       className={clsx(
-        ' tracking-[1%] text-center rounded-full',
+        ' tracking-[1%] text-center rounded-full transition-all',
         {
           'uppercase text-[18px] px-[32px] py-[16px] leading-[24.3px] bg-summerSky border-[1px] border-white font-medium text-white  transition-all duration-300 ease-out button-primary':
             type === 'primary',
@@ -19,7 +21,10 @@ const Button = ({ text, type }: IProps) => {
             type === 'secondary',
         },
       )}>
-      <span className="z-10">{text}</span>
+      <span className="z-10">
+        {text}
+        {children}
+      </span>
     </button>
   );
 };
