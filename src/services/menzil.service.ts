@@ -1,16 +1,16 @@
-import axios from 'axios';
-import { PagesTypes } from './types/pages.types';
-import { PartnersTypes } from './types/partners.types';
-import { CartoonsTypes } from './types/cartoons.type';
-import { HomeServicesTypes } from './types/home-services.types';
-import { HomeProjectsTypes } from './types/home-projects.types';
-import { ContactTypes } from './types/contact.types';
-import { MainServicesTypes } from './types/main-services.types';
-import { ProjectTypes } from './types/project.types';
-import { ContactUsTypes } from './types/contact-us.types';
+import axios from "axios";
+import { PagesTypes } from "./types/pages.types";
+import { PartnersTypes } from "./types/partners.types";
+import { CartoonsTypes } from "./types/cartoons.type";
+import { HomeServicesTypes } from "./types/home-services.types";
+import { HomeProjectsTypes } from "./types/home-projects.types";
+import { ContactTypes } from "./types/contact.types";
+import { MainServicesTypes } from "./types/main-services.types";
+import { ProjectTypes } from "./types/project.types";
+import { ContactUsTypes } from "./types/contact-us.types";
 
 class MenzilService {
-  private URL = 'https://menzilmekan.com.tm/app/api/v1';
+  private URL = "https://menzilmekan.com.tm/app/api/v1";
 
   getPages = async () => {
     return await axios.get<PagesTypes>(`${this.URL}/pages`);
@@ -29,7 +29,9 @@ class MenzilService {
   };
 
   getHomeProjects = async () => {
-    return await axios.get<HomeProjectsTypes>(`${this.URL}/home-projects`);
+    return await axios.get<HomeProjectsTypes>(
+      `${this.URL}/cartoons?index=true`
+    );
   };
 
   getContact = async () => {
@@ -57,7 +59,7 @@ class MenzilService {
   }) => {
     return await axios.post(`${this.URL}/contact`, body, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   };

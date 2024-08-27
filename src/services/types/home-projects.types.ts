@@ -7,7 +7,7 @@ export interface HomeProjectsTypes {
 export interface Datum {
   id: number;
   name: string;
+  list_image: string;
   created_at: string;
   updated_at: string;
-  image: string;
 }

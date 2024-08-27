@@ -20,7 +20,7 @@ const GallerySection = () => {
             <div className="group h-[376px] overflow-hidden">
               <Link to={"/"} className="cursor-default">
                 <img
-                  src={data ? data[0].image : ""}
+                  src={data ? data[0].list_image : ""}
                   alt="project"
                   className="group-hover:scale-110 transition duration-300 ease-in-out"
                 />
@@ -34,7 +34,7 @@ const GallerySection = () => {
                       <div key={i} className="group overflow-hidden">
                         <Link to={"/"} className="cursor-default">
                           <img
-                            src={item.image}
+                            src={item.list_image}
                             alt="project"
                             className="group-hover:scale-110 transition duration-300 ease-in-out"
                           />
@@ -73,7 +73,7 @@ const GallerySection = () => {
             <div className="group h-[376px] overflow-hidden">
               <Link to={"/"} className="cursor-default">
                 <img
-                  src={data ? data[5].image : ""}
+                  src={data ? data[5].list_image : ""}
                   alt="project"
                   className="group-hover:scale-110 transition duration-300 ease-in-out"
                 />
@@ -94,7 +94,7 @@ const GallerySection = () => {
                     >
                       <Link to={"/"} className="cursor-default">
                         <img
-                          src={item.image}
+                          src={item.list_image}
                           alt="project"
                           className="group-hover:scale-110 transition duration-300 ease-in-out"
                         />
@@ -102,60 +102,6 @@ const GallerySection = () => {
                     </div>
                   ))
                 : null}
-              {/* <div className="group pointer-events-auto embla-gallery__slide overflow-hidden relative">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home5.png"
-                    alt="project"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home6.png"
-                    alt="project"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home1.png"
-                    alt="project"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home3.png"
-                    alt="project"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home4.png"
-                    alt="project"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div>
-              <div className="group embla-gallery__slide overflow-hidden relative">
-                <Link to={"/"} className="cursor-default">
-                  <img
-                    src="/home2.png"
-                    alt="project"
-                    className="group-hover:scale-110 transition duration-300 ease-in-out"
-                  />
-                </Link>
-              </div> */}
             </div>
 
             <div className="embla__dots">

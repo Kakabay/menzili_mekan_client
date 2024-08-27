@@ -1,17 +1,21 @@
-import useGetProject from '@/react-query/useGetProject';
-import Container from '../Container';
-import { useParams } from 'react-router-dom';
+import useGetProject from "@/react-query/useGetProject";
+import Container from "../Container";
+import { useParams } from "react-router-dom";
 
 export const PostersSection = () => {
   const { id } = useParams();
 
-  const { data } = useGetProject(id ? id : '');
+  const { data } = useGetProject(id ? id : "");
+
+  const hasData = data && data[0];
+  const hasPosters =
+    hasData && data[0].list_posters && data[0].list_posters.length > 0;
 
   return (
     <section className="section-mt">
       <div className="w-full tab:h-[220px] sm:h-[188px] h-[84px] relative flex justify-center items-center section-mb">
         <img
-          src={data && data[0] ? data[0].posters_image : ''}
+          src={data && data[0] ? data[0].posters_image : ""}
           alt="bg-image"
           className="w-full h-full"
         />
@@ -20,20 +24,20 @@ export const PostersSection = () => {
         </div>
       </div>
 
-      <Container>
-        <div className="grid grid-cols-2 gap-8">
-          <img
-            src={data ? (data[0] ? data[0].list_posters[0].image : '') : ''}
-            alt=""
-            className="row-span-2"
-          />
-          {data &&
-            data[0].list_posters &&
-            data[0].list_posters
-              .filter((_, i) => i > 0)
-              .map((item) => <img src={item.image} alt="poster image" />)}
-        </div>
-      </Container>
+      {hasPosters && (
+        <Container>
+          <div className="grid grid-cols-2 gap-8">
+            <img
+              src={data[0].list_posters[0].image}
+              alt="poster image"
+              className="row-span-2"
+            />
+            {data[0].list_posters.slice(1).map((item, index) => (
+              <img key={index} src={item.image} alt="poster image" />
+            ))}
+          </div>
+        </Container>
+      )}
     </section>
   );
 };

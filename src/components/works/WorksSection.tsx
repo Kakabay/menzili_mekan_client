@@ -1,8 +1,8 @@
-import useGetCartoons from '@/react-query/useGetCartoons';
-import Container from '../Container';
-import CartoonCard from './CartoonCard';
-import { Link } from 'react-router-dom';
-import { easeOut, motion } from 'framer-motion';
+import useGetCartoons from "@/react-query/useGetCartoons";
+import Container from "../Container";
+import CartoonCard from "./CartoonCard";
+import { Link } from "react-router-dom";
+import { easeOut, motion } from "framer-motion";
 
 const WorksSection = () => {
   const { data } = useGetCartoons();
@@ -11,12 +11,12 @@ const WorksSection = () => {
     initial: {
       opacity: 0,
       y: 30,
-      filter: 'blur(3px)',
+      filter: "blur(3px)",
     },
     animate: (index: number) => ({
       opacity: 1,
       y: 0,
-      filter: 'blur(0)',
+      filter: "blur(0)",
 
       transition: {
         delay: 0.3 * index,
@@ -37,10 +37,11 @@ const WorksSection = () => {
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
-                custom={index}>
+                custom={index}
+              >
                 <Link
                   key={index}
-                  to={''}
+                  to={""}
                   // to={`project/${item.id}`}
                 >
                   <CartoonCard {...item} />
