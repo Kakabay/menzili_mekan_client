@@ -13,6 +13,6 @@ export const navData = [
   },
   {
     title: 'Contacts',
-    link: '/contact',
+    link: '/get-in-touch',
   },
 ];

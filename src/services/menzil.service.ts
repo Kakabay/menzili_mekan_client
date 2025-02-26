@@ -50,15 +50,19 @@ class MenzilService {
     return await axios.get<ContactUsTypes>(`${this.URL}/contactUs`);
   };
 
-  postContactForm = async (body: {
-    name: string;
-    email: string;
-    message: string;
-    phone: string;
-    file: string | File | undefined;
-  }) => {
+  postContactForm = async (
+    body: {
+      name: string;
+      email: string;
+      message: string;
+      phone: string;
+      file: string | File | undefined;
+    },
+    func: () => string
+  ) => {
     return await axios.post(`${this.URL}/contact`, body, {
       headers: {
+        "X-CSRF-TOKEN": func(),
         "Content-Type": "multipart/form-data",
       },
     });

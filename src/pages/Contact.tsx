@@ -1,9 +1,9 @@
-import Container from '@/components/Container';
-import HeroSection from '@/components/HeroSection';
-import Form from '@/components/services/Form';
-import useGetContactUs from '@/react-query/useGetContactUs';
-import useGetPages from '@/react-query/useGetPages';
-import { useEffect } from 'react';
+import Container from "@/components/Container";
+import HeroSection from "@/components/HeroSection";
+import Form from "@/components/services/Form";
+import useGetContactUs from "@/react-query/useGetContactUs";
+import useGetPages from "@/react-query/useGetPages";
+import { useEffect } from "react";
 
 const Contact = () => {
   useEffect(() => {
@@ -19,8 +19,8 @@ const Contact = () => {
       <HeroSection
         size="small"
         page="contact"
-        title={data ? data[3].header : ''}
-        banner={data ? data[3].banner.path : ''}
+        title={data ? data[3].header : ""}
+        banner={data ? data[3].banner.path : ""}
       />
 
       <section className="md:mt-20 mt-10">
@@ -28,7 +28,10 @@ const Contact = () => {
           <div className="flex sm:flex-row flex-col items-center sm:items-start gap-[18px] justify-between">
             {contactData
               ? contactData.map((item, i) => (
-                  <div key={i} className="w-full max-w-[380px] text-center flex flex-col gap-4">
+                  <div
+                    key={i}
+                    className="w-full max-w-[380px] text-center flex flex-col gap-4"
+                  >
                     <img
                       width={64}
                       height={64}
@@ -40,7 +43,8 @@ const Contact = () => {
                     </h2>
                     <div
                       className="text-[16px] leading-[150%] text-bauhaus"
-                      dangerouslySetInnerHTML={{ __html: item.text }}></div>
+                      dangerouslySetInnerHTML={{ __html: item.text }}
+                    ></div>
                   </div>
                 ))
               : null}
